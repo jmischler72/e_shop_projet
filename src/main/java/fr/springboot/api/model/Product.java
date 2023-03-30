@@ -17,6 +17,8 @@ public class Product {
     @Nonnull
     private String name;
 
+    @Nonnull
+
     private Double price;
 
     private String pictureUrl;

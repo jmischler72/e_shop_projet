@@ -13,7 +13,7 @@ public class ProductController {
     @Autowired
     ProductRepository productRepository;
 
-    @GetMapping(value = { "", "/get-all" })
+    @GetMapping(value = {  "/get-all" })
     public @NotNull Iterable<Product> getProducts() {
         return productRepository.findAll();
     }
