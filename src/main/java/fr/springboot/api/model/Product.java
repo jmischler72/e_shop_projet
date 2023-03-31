@@ -1,12 +1,9 @@
 package fr.springboot.api.model;
 
 import jakarta.annotation.Nonnull;
-import jakarta.persistence.Basic;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Table(name = "product")
 @Entity
 public class Product {
     @Id
@@ -18,7 +15,6 @@ public class Product {
     private String name;
 
     @Nonnull
-
     private Double price;
 
     private String pictureUrl;
