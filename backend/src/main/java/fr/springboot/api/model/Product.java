@@ -18,7 +18,7 @@ public class Product {
     private Double price;
 
     private String pictureUrl;
-    private String category;
+    private Category category;
     public String getName() {
         return name;
     }
@@ -47,3 +47,4 @@ public class Product {
         this.pictureUrl = pictureUrl;
     }
 }
+

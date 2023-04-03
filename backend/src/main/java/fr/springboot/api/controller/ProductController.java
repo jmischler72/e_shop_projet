@@ -1,5 +1,6 @@
 package fr.springboot.api.controller;
 
+import fr.springboot.api.model.Category;
 import fr.springboot.api.model.Product;
 import fr.springboot.api.repository.ProductRepository;
 import org.jetbrains.annotations.NotNull;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("api/products")
@@ -20,10 +23,16 @@ public class ProductController {
         return productRepository.findAll();
     }
 
-    @GetMapping(value = {  "/get-category/{category}" })
+    @GetMapping(value = {  "/get-by-category/{category}" })
     public @NotNull Iterable<Product> getProductsByCategory(@PathVariable(value = "category") String category) {
         return productRepository.findAllByCategory(category);
     }
+
+    @GetMapping(value = {  "/get-categories" })
+    public @NotNull Iterable<Category> getCategories() {
+        return Arrays.stream(Category.values()).toList();
+    }
+
     @GetMapping(value = {  "/get/{id}" })
     public @NotNull Product getProductById(@PathVariable(value = "id") Long id) {
         return productRepository.findById(id).get();
@@ -64,5 +73,4 @@ public class ProductController {
 
         return new ResponseEntity<>("Product updated", HttpStatus.OK);
     }
-
 }
