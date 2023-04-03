@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {ProductsComponent} from "./products/products.component";
 
 @Component({
   selector: 'app-ecommerce',
@@ -6,17 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./ecommerce.component.sass']
 })
 export class EcommerceComponent {
-  private collapsed = true;
+  collapsed = true;
   orderFinished = false;
 
   @ViewChild('productsC')
   productsC: ProductsComponent;
 
-  @ViewChild('shoppingCartC')
-  shoppingCartC: ShoppingCartComponent;
-
-  @ViewChild('ordersC')
-  ordersC: OrdersComponent;
+  // @ViewChild('shoppingCartC')
+  // shoppingCartC: ShoppingCartComponent;
+  //
+  // @ViewChild('ordersC')
+  // ordersC: OrdersComponent;
 
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
@@ -29,7 +30,7 @@ export class EcommerceComponent {
   reset() {
     this.orderFinished = false;
     this.productsC.reset();
-    this.shoppingCartC.reset();
-    this.ordersC.paid = false;
+    // this.shoppingCartC.reset();
+    // this.ordersC.paid = false;
   }
 }
