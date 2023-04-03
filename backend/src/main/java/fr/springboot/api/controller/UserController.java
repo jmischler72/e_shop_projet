@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,5 +53,34 @@ public class UserController {
         }
 
         return new ResponseEntity<>(user.get(0), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long id) {
+        Optional<User> user = userRepository.findById(id);
+
+        if(!user.isPresent()) {
+            return new ResponseEntity<>("No account matches this id", HttpStatus.NOT_FOUND);
+        }
+
+        userRepository.delete(user.get());
+
+        return new ResponseEntity<>("User deleted", HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateUser(@RequestBody User userUpdated) {
+        Optional<User> user = userRepository.findById(userUpdated.getId());
+
+        if(!user.isPresent()) {
+            return new ResponseEntity<>("No account matches this id", HttpStatus.NOT_FOUND);
+        }
+
+        userUpdated.hashPassword();
+        user.get().setEmail(userUpdated.getEmail());
+        user.get().setPassword(userUpdated.getPassword());
+        userRepository.save(user.get());
+
+        return new ResponseEntity<>("User updated", HttpStatus.OK);
     }
 }
