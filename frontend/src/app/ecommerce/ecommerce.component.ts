@@ -4,7 +4,7 @@ import {ProductsComponent} from "./products/products.component";
 @Component({
   selector: 'app-ecommerce',
   templateUrl: './ecommerce.component.html',
-  styleUrls: ['./ecommerce.component.sass']
+  styleUrls: ['./ecommerce.component.scss']
 })
 export class EcommerceComponent {
   collapsed = true;

@@ -7,7 +7,7 @@ import {Subscription} from "rxjs";
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.sass']
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
   productOrders: ProductOrder[] = [];
@@ -44,6 +44,30 @@ export class ProductsComponent {
   //   });
   // }
 
+  // addToCart(order: ProductOrder) {
+  //   this.selectedProductOrder = order;
+  //   this.productSelected = true;
+  // }
+  //
+  // removeFromCart(productOrder: ProductOrder) {
+  //
+  //   let index = this.getProductIndex(productOrder.product);
+  //   if (index > -1) {
+  //     this.shoppingCartOrders.productOrders.splice(
+  //       this.getProductIndex(productOrder.product), 1);
+  //   }
+  //   this.ecommerceService.ProductOrders = this.shoppingCartOrders;
+  //   this.shoppingCartOrders = this.ecommerceService.ProductOrders;
+  //   this.productSelected = false;
+  // }
+
+  isProductSelected(product: Product){
+    if(product === this.selectedProductOrder?.product){
+      return true;
+    }
+    return false;
+  }
+
   reset() {
     this.productOrders = [];
     this.loadProducts();
@@ -51,4 +75,5 @@ export class ProductsComponent {
     // this.loadOrders();
     this.productSelected = false;
   }
+
 }

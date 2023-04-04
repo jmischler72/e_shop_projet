@@ -8,6 +8,7 @@ import { EcommerceComponent } from './ecommerce/ecommerce.component';
 import { ProductsComponent } from './ecommerce/products/products.component';
 import { OrdersComponent } from './ecommerce/orders/orders.component';
 import { ShoppingCartComponent } from './ecommerce/shopping-cart/shopping-cart.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -17,11 +18,12 @@ import { ShoppingCartComponent } from './ecommerce/shopping-cart/shopping-cart.c
     OrdersComponent,
     ShoppingCartComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
