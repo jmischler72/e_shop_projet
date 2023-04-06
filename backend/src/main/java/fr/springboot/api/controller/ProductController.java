@@ -1,6 +1,5 @@
 package fr.springboot.api.controller;
 
-import fr.springboot.api.model.Category;
 import fr.springboot.api.model.Product;
 import fr.springboot.api.repository.ProductRepository;
 import org.jetbrains.annotations.NotNull;
@@ -26,11 +25,6 @@ public class ProductController {
     @GetMapping(value = {  "/get-by-category/{category}" })
     public @NotNull Iterable<Product> getProductsByCategory(@PathVariable(value = "category") String category) {
         return productRepository.findAllByCategory(category);
-    }
-
-    @GetMapping(value = {  "/get-categories" })
-    public @NotNull Iterable<Category> getCategories() {
-        return Arrays.stream(Category.values()).toList();
     }
 
     @GetMapping(value = {  "/get/{id}" })
@@ -69,6 +63,7 @@ public class ProductController {
         product.setName(productUpdated.getName());
         product.setPrice(productUpdated.getPrice());
         product.setPictureUrl(product.getPictureUrl());
+        product.setCategory(product.getCategory());
         productRepository.save(product);
 
         return new ResponseEntity<>("Product updated", HttpStatus.OK);
