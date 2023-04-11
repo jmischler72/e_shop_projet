@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ProductOrder} from "../../ProductOrder";
-import {EcommerceService} from "../../ecommerce.service";
+import {ProductService} from "../../product.service";
 import {Product} from "../../Product";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-products',
@@ -12,17 +11,15 @@ import {Subscription} from "rxjs";
 export class ProductsComponent {
   productOrders: ProductOrder[] = [];
   products: Product[] = [];
-  selectedProductOrder: ProductOrder | null;
-  productSelected: boolean = false;
 
-  constructor(private ecommerceService: EcommerceService) {
-    this.selectedProductOrder = null;
+  @Input() filter = '';
+
+  constructor(private ecommerceService: ProductService) {
   }
 
   ngOnInit() {
     this.productOrders = [];
     this.loadProducts();
-    // this.loadOrders();
   }
 
   loadProducts() {
@@ -38,16 +35,9 @@ export class ProductsComponent {
       );
   }
 
-  // loadOrders() {
-  //   this.sub = this.ecommerceService.OrdersChanged.subscribe(() => {
-  //     this.shoppingCartOrders = this.ecommerceService.;
-  //   });
-  // }
+  addToCart(order: ProductOrder) {
 
-  // addToCart(order: ProductOrder) {
-  //   this.selectedProductOrder = order;
-  //   this.productSelected = true;
-  // }
+  }
   //
   // removeFromCart(productOrder: ProductOrder) {
   //
@@ -61,19 +51,6 @@ export class ProductsComponent {
   //   this.productSelected = false;
   // }
 
-  isProductSelected(product: Product){
-    if(product === this.selectedProductOrder?.product){
-      return true;
-    }
-    return false;
-  }
 
-  reset() {
-    this.productOrders = [];
-    this.loadProducts();
-    // this.ecommerceService.ProductOrders.productOrders = [];
-    // this.loadOrders();
-    this.productSelected = false;
-  }
 
 }
