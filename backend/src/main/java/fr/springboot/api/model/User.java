@@ -9,11 +9,15 @@ import org.checkerframework.common.aliasing.qual.Unique;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Basic(optional = false)
+    @Column(name = "email")
     @Nonnull
     private String email;
+
+    @Column(name = "password")
     private String password;
 
     public Long getId() {
