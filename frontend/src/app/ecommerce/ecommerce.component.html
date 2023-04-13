@@ -9,16 +9,24 @@
       </div>
     </div>
 
-    <a [routerLink]="['login']" class=" item">
-
-      <div class="group"   >
+    <a  *ngIf="!username;else default" [routerLink]="['login']" class=" item">
+      <div class="group" >
         <mat-icon>account_circle</mat-icon>
-        <div class="detail">
+        <div class="detail" >
           <b>Compte</b>
           <div class="sub">Se connecter</div>
         </div>
       </div>
     </a>
+    <ng-template #default class=" item">
+      <div class="group" >
+        <mat-icon>account_circle</mat-icon>
+        <div class="detail" >
+          <b>Votre compte</b>
+          <div class="sub">{{username}}</div>
+        </div>
+      </div>
+    </ng-template>
 
     <a class="item">
       <div class="group">

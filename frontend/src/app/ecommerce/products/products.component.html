@@ -14,7 +14,8 @@
                 <p>Déja dans le panier</p>
               </div>
             </div>
-            <h5 class="card-text">${{order.product.price}}</h5>
+            <h5 class="card-text"><small class="text-muted">{{order.product.category.toLowerCase()}}</small></h5>
+            <h5 class="card-text">€{{order.product.price}}</h5>
 
             <div class="row">
               <div class="col-4 padding-0">
