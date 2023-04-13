@@ -1,9 +1,7 @@
-export interface Product {
+export interface User {
   id: number;
-  name: string;
-  price: number;
-  pictureUrl: string;
-  category: string;
+  email: string;
+  password: string;
 
   // all arguments constructor
 }

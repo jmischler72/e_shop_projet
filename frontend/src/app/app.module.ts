@@ -7,10 +7,10 @@ import {AppComponent} from './app.component';
 import {EcommerceComponent} from './ecommerce/ecommerce.component';
 import {ProductsComponent} from './ecommerce/products/products.component';
 import {LoginComponent} from './login/login.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from '@angular/material/icon';
 import { FilterPipe } from './ecommerce/filter.pipe';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component'
+import { ShoppingCartComponent } from './ecommerce/shopping-cart/shopping-cart.component'
 import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import {InMemoryDataService} from "./in-memory-data.service";
 
@@ -32,7 +32,8 @@ import {InMemoryDataService} from "./in-memory-data.service";
     // ),
     FormsModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

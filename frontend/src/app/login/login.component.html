@@ -11,9 +11,9 @@
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Nom d'utilisateur">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Mot de passe">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input type="text" id="login" class="fadeIn second" name="email" formControlName="email" placeholder="E-mail">
+      <input type="text" id="password" class="fadeIn third" name="password" formControlName="password" placeholder="Mot de passe">
       <input type="submit" class="fadeIn fourth" value="Se connecter">
     </form>
 

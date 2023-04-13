@@ -28,7 +28,7 @@
       </div>
     </ng-template>
 
-    <a class="item">
+    <a class="item" (click)="showCart()">
       <div class="group">
         <mat-icon>shopping_cart</mat-icon>
         <div class="detail">
@@ -39,5 +39,7 @@
     </a>
   </nav>
 
-  <app-products [filter]="filter" (productOrder)="addOrder($event)" ></app-products>
+  <app-products [filter]="filter" [hidden]="withCart" (productOrder)="addOrder($event)" ></app-products>
+  <app-shopping-cart [userId]="userId" [shoppingCart]="shoppingCart" [hidden]="!withCart"></app-shopping-cart>
+
 </div>

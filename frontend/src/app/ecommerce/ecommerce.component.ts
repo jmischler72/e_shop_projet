@@ -12,11 +12,16 @@ export class EcommerceComponent implements OnInit{
   filter = "";
   shoppingCart: ProductOrder[] = [];
   username: string|undefined;
+  userId: number;
+  withCart: boolean;
 
   ngOnInit(){
     // @ts-ignore
     this.username = JSON.parse(localStorage.getItem('currentUser')).email;
-    console.log(this.username);
+    // @ts-ignore
+    this.userId = JSON.parse(localStorage.getItem('currentUser')).id;
+
+    console.log(this.userId);
 
     // this.username= JSON.parse(localStorage.getItem('currentUser')).username;
   }
@@ -35,5 +40,13 @@ export class EcommerceComponent implements OnInit{
       this.shoppingCart.push($event);
     }
     console.log(this.shoppingCart)
+  }
+
+  showCart() {
+    if(this.withCart){
+      this.withCart = false;
+    }else {
+      this.withCart = true;
+    }
   }
 }

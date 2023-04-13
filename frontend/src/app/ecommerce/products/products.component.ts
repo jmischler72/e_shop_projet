@@ -14,6 +14,8 @@ export class ProductsComponent {
   @Input() filter = '';
   @Output() productOrder = new EventEmitter<ProductOrder>();
 
+  shoppingCart: Product[] = [];
+
   constructor(private ecommerceService: ProductService) {
   }
 
@@ -28,7 +30,7 @@ export class ProductsComponent {
         (products: Product[]) => {
           this.products = products;
           this.products.forEach(product => {
-            this.productOrders.push(new ProductOrder(product, 0, false));
+            this.productOrders.push(new ProductOrder(product, 0));
           })
         },
         (error) => console.log(error)
@@ -36,8 +38,16 @@ export class ProductsComponent {
   }
 
   addToCart(order: ProductOrder) {
-    order.in_cart = true;
+    this.shoppingCart.push(order.product);
     this.productOrder.emit(order);
   }
 
+  isInCart(order: ProductOrder) {
+    if(this.shoppingCart.indexOf(order.product) === -1){
+      return false;
+    }else {
+      return true;
+    }
+
+  }
 }
