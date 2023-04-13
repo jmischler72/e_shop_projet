@@ -1,5 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
-import {ProductsComponent} from "./products/products.component";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-ecommerce',
@@ -7,30 +6,20 @@ import {ProductsComponent} from "./products/products.component";
   styleUrls: ['./ecommerce.component.scss']
 })
 export class EcommerceComponent {
-  collapsed = true;
-  orderFinished = false;
 
-  @ViewChild('productsC')
-  productsC: ProductsComponent;
+  temp_filter = "";
+  filter = "";
 
-  // @ViewChild('shoppingCartC')
-  // shoppingCartC: ShoppingCartComponent;
-  //
-  // @ViewChild('ordersC')
-  // ordersC: OrdersComponent;
 
-  toggleCollapsed(): void {
-    this.collapsed = !this.collapsed;
+  applyFilter() {
+    this.filter = this.temp_filter;
   }
 
-  finishOrder(orderFinished: boolean) {
-    this.orderFinished = orderFinished;
+  removeFilter() {
+    this.filter = '';
+    this.temp_filter = '';
+
   }
 
-  reset() {
-    this.orderFinished = false;
-    this.productsC.reset();
-    // this.shoppingCartC.reset();
-    // this.ordersC.paid = false;
-  }
+
 }

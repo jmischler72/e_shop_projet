@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   price: number;
   pictureUrl: string;
+  category: string;
 
   // all arguments constructor
 }
