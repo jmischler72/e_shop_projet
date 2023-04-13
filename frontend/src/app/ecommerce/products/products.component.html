@@ -1,29 +1,68 @@
-<div class="row card-deck">
-  <div class="col-lg-4 col-md-6 mb-4" *ngFor="let order of productOrders| filter: filter">
-    <div class="card text-center">
-      <div class="card-header">
-        <h4>{{order.product.name}}</h4>
-      </div>
-      <div class="card-body">
-        <a href="#"><img class="card-img-top" src={{order.product.pictureUrl}}
-                         alt=""></a>
-        <h5 class="card-title">${{order.product.price}}</h5>
-        <div class="row">
-          <div class="col-4 padding-0">
-            <input type="number" min="0" class="form-control"
-                   [(ngModel)]=order.quantity>
-          </div>
-          <div class="col-4 padding-0">
-            <button class="btn btn-primary"
-                    (click)="addToCart(order)"
-                    [disabled]="order.quantity <= 0">
-              <mat-icon>add_shopping_cart</mat-icon>
-              Add To Cart
-            </button>
+<div class="row card-deck" style="justify-content: space-evenly">
+  <div class="col-lg-5 col-md-6"  *ngFor="let order of productOrders| filter: filter">
+    <div class="card mb-3" style="max-width: 800px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img class="card-img-top" src={{order.product.pictureUrl}} alt="">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="card-title">
+              <h4>{{order.product.name}}</h4>
+              <div class="in_cart" *ngIf="order.in_cart">
+                <mat-icon style="color:green">shopping_cart</mat-icon>
+                <p>Déja dans le panier</p>
+              </div>
+            </div>
+            <h5 class="card-text">${{order.product.price}}</h5>
+
+            <div class="row">
+              <div class="col-4 padding-0">
+                <input type="number" min="0" class="form-control"
+                       [(ngModel)]=order.quantity>
+              </div>
+              <div class="col-4 padding-0">
+                <button class="btn btn-primary"
+                        (click)="addToCart(order)"
+                        [disabled]="order.quantity <= 0">
+                  <mat-icon>add_shopping_cart</mat-icon>
+                  Add To Cart
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-</div>
+    <!--    <div class="card text-center">-->
+    <!--      <div class="card-header">-->
+    <!--        <h4>{{order.product.name}}</h4>-->
+    <!--        <div class="in_cart" *ngIf="order.in_cart">-->
+    <!--          <mat-icon style="color:green" >shopping_cart</mat-icon>-->
+    <!--          <p>Déja dans le panier</p>-->
+    <!--        </div>-->
+
+    <!--      </div>-->
+    <!--      <div class="card-body">-->
+    <!--          <img class="card-img-top" style="height: 100px; width: auto" src={{order.product.pictureUrl}} alt="">-->
+    <!--        <h5 class="card-title">${{order.product.price}}</h5>-->
+    <!--        <div class="row">-->
+    <!--          <div class="col-4 padding-0">-->
+    <!--            <input type="number" min="0" class="form-control"-->
+    <!--                   [(ngModel)]=order.quantity>-->
+    <!--          </div>-->
+    <!--          <div class="col-4 padding-0">-->
+    <!--            <button class="btn btn-primary"-->
+    <!--                    (click)="addToCart(order)"-->
+    <!--                    [disabled]="order.quantity <= 0">-->
+    <!--              <mat-icon>add_shopping_cart</mat-icon>-->
+    <!--              Add To Cart-->
+    <!--            </button>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--  </div>-->
+
+  </div>
