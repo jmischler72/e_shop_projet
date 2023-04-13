@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {ProductOrder} from "../ProductOrder";
 
 @Component({
   selector: 'app-ecommerce',
@@ -7,19 +8,23 @@ import {Component} from '@angular/core';
 })
 export class EcommerceComponent {
 
-  temp_filter = "";
   filter = "";
+  shoppingCart: ProductOrder[] = [];
 
 
-  applyFilter() {
-    this.filter = this.temp_filter;
-  }
 
   removeFilter() {
     this.filter = '';
-    this.temp_filter = '';
-
   }
 
 
+  addOrder($event: ProductOrder) {
+    const order = this.shoppingCart.find(order => order.product == $event.product);
+    if(order != undefined){
+      order.quantity == $event.quantity;
+    }else{
+      this.shoppingCart.push($event);
+    }
+    console.log(this.shoppingCart)
+  }
 }

@@ -13,8 +13,8 @@ export class ProductService {
   }
 
   getAllProducts() {
-    // return this.http.get<Product[]>(this.productsUrl+"/get-all");
-    return this.http.get<Product[]>(this.productsUrl);
+    return this.http.get<Product[]>(this.productsUrl+"/get-all");
+    // return this.http.get<Product[]>(this.productsUrl);
   }
 
 

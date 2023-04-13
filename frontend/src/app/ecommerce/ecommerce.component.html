@@ -3,9 +3,9 @@
     <img class="logo" src="assets/eshop_logo.png">
     <div class="item search right" tabindex="0">
       <div class="search-group">
-        <input type="text" (keyup.enter)="applyFilter()" [(ngModel)]="temp_filter">
+        <input type="text" [(ngModel)]="filter">
         <mat-icon *ngIf="filter" (click)="removeFilter()" class="search-icon">close</mat-icon>
-        <mat-icon class="search-icon" (click)="applyFilter()">search</mat-icon>
+        <mat-icon class="search-icon">search</mat-icon>
       </div>
     </div>
 
@@ -25,11 +25,11 @@
         <mat-icon>shopping_cart</mat-icon>
         <div class="detail">
           <b>Panier</b>
-          <div class="sub">Rs 0.0</div>
+          <div class="sub">{{shoppingCart.length}}</div>
         </div>
       </div>
     </a>
   </nav>
 
-  <app-products #productsC [filter]="filter"></app-products>
+  <app-products [filter]="filter" (productOrder)="addOrder($event)" ></app-products>
 </div>
