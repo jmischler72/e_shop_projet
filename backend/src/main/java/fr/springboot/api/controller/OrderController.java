@@ -27,6 +27,8 @@ public class OrderController {
     UserRepository userRepository;
     @Autowired
     OrderItemRepository orderItemRepository;
+    @Autowired
+    ProductRepository productRepository;
 
     @PostMapping("/create/{id}")
     public ResponseEntity<?> createOrder(@RequestBody ShoppingCart shoppingCart, @PathVariable Long id) {
@@ -48,6 +50,7 @@ public class OrderController {
 
             OrderItem orderItem = new OrderItem(order, entry.getProduct(), entry.getQuantity());
             orderItemRepository.save(orderItem);
+            updateStock(entry.getProduct(), entry.getQuantity());
             orderItems.add(orderItem);
         }
 
@@ -66,6 +69,11 @@ public class OrderController {
         headers.add("Location", uri);
 
         return new ResponseEntity<>(order, HttpStatus.CREATED);
+    }
+
+    private void updateStock(Product product, int quantity) {
+        product.setStock(product.getStock() - quantity);
+        productRepository.save(product);
     }
 
     @GetMapping("/get-all-for/{id}")
