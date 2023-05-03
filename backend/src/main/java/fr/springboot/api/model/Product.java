@@ -43,7 +43,6 @@ public class Product {
         return category;
     }
 
-
     public Long getId() {
         return id;
     }
@@ -61,10 +60,6 @@ public class Product {
     }
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public int getStock() {
