@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 
 @RestController
-@RequestMapping("api/products")
+@RequestMapping("/api/products")
 public class ProductController {
 
     @Autowired
     ProductRepository productRepository;
 
-    @GetMapping(value = {  "/get-all" })
+    @GetMapping(value = {  "/get" })
     public @NotNull Iterable<Product> getProducts() {
         return productRepository.findAll();
     }
