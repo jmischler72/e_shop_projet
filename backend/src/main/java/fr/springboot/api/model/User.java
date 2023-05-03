@@ -3,8 +3,6 @@ package fr.springboot.api.model;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Set;
 
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
 @Entity
@@ -23,7 +21,7 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Column(name = "role", length = 20)
     private ERole role;
 
     public User(String email, String password) {

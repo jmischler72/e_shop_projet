@@ -1,6 +1,6 @@
-INSERT INTO user (email, password) VALUES ('admin@gmail.com', '92668751'); --hashed password, original: admin
-INSERT INTO user (email, password) VALUES ('client1@orange.fr', '860587462'); --hashed password, original: client1
-INSERT INTO user (email, password) VALUES ('client2@gmail.com', '860587463'); --hashed password, original: client2
+INSERT INTO user (email, password, role) VALUES ('admin@test.com', '$2a$10$FiH8giEy6sJeOv0SUBSBD.Vo4Qgmn5pjuXqEIn1L8xQrSfXYqojpG', 'ROLE_ADMIN'); # hashed password, original: test123
+INSERT INTO user (email, password, role) VALUES ('test@test.com', '$2a$10$FiH8giEy6sJeOv0SUBSBD.Vo4Qgmn5pjuXqEIn1L8xQrSfXYqojpG', 'ROLE_USER'); # hashed password, original: test123
+
 
 INSERT INTO product (name, price, stock, picture_url, category) VALUES ('Animal Crossing: New Horizons', 59.99, 10, 'https://fs-prod-cdn.nintendo-europe.com/media/images/11_square_images/games_18/nintendo_switch_5/SQ_NSwitch_AnimalCrossingNewHorizons_image500w.jpg', 'ADVENTURE');
 INSERT INTO product (name, price, stock, picture_url, category) VALUES ('Mario Kart 8 Deluxe', 69.99, 5, 'https://fs-prod-cdn.nintendo-europe.com/media/images/11_square_images/games_18/nintendo_switch_5/SQ_NSwitch_MarioKart8Deluxe_image500w.jpg', 'RACING');

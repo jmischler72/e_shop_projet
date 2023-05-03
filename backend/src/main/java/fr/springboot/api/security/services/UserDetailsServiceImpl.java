@@ -21,6 +21,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Spring Security only gives an implementation of UserDetails that uses a username but in this application we use
+     * an email, it can cause a confusion
+     *
+     * @param email identifier of the user
+     * @return UserDetailsImpl
+     * @throws UsernameNotFoundException if no user with this email
+     */
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
