@@ -2,11 +2,13 @@ package fr.springboot.api.controller;
 
 import fr.springboot.api.model.Product;
 import fr.springboot.api.repository.ProductRepository;
+import fr.springboot.api.security.services.UserDetailsImpl;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -24,7 +26,9 @@ public class ProductController {
     }
 
     @GetMapping()
-    public @NotNull Iterable<Product> getProducts() {
+    public @NotNull Iterable<Product> getProducts(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        System.out.println(userDetails.getUsername());
         return productRepository.findAll();
     }
 

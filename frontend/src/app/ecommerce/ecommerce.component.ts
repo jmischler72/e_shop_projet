@@ -16,12 +16,7 @@ export class EcommerceComponent implements OnInit{
   withCart: boolean;
 
   ngOnInit(){
-    // @ts-ignore
-    this.username = JSON.parse(localStorage.getItem('currentUser')).email;
-    // @ts-ignore
-    this.userId = JSON.parse(localStorage.getItem('currentUser')).id;
 
-    console.log(this.userId);
 
     // this.username= JSON.parse(localStorage.getItem('currentUser')).username;
   }

@@ -11,8 +11,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from '@angular/material/icon';
 import { FilterPipe } from './ecommerce/filter.pipe';
 import { ShoppingCartComponent } from './ecommerce/shopping-cart/shopping-cart.component'
-import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
-import {InMemoryDataService} from "./in-memory-data.service";
+
 
 @NgModule({
   declarations: [
@@ -27,9 +26,6 @@ import {InMemoryDataService} from "./in-memory-data.service";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    // HttpClientInMemoryWebApiModule.forRoot(
-    //   InMemoryDataService, { dataEncapsulation: false }
-    // ),
     FormsModule,
     MatIconModule,
     MatSnackBarModule,

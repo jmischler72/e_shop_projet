@@ -1,5 +1,6 @@
 package fr.springboot.api.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 
@@ -17,6 +18,7 @@ public class User {
     @Nonnull
     private String email;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "password")
     private String password;
 

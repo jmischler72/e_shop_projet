@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../user.service";
 import {Router} from "@angular/router";
+import {AuthService, JwtResponse} from "../services/authServices/auth.service";
+import {StorageService} from "../services/authServices/storage.service";
+import {JwtTokenResponse} from "../services/authServices/JwtTokenResponse";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private authService: AuthService,
+    private storageService: StorageService
   ) {
   }
 
@@ -32,17 +35,15 @@ export class LoginComponent implements OnInit {
   get password() { return this.loginForm.get('password'); }
 
   onSubmit() {
-    // @ts-ignore
-    this.userService.login( this.email.value, this.password.value).subscribe((data) => {
-
-        if (this.userService.isLoggedIn()) {
-          this.router.navigate(["/"]);
-        } else {
-          this.loginError = 'email or password is incorrect.';
-        }
-      },
-      error => this.error = error
-    );
-
+    const val = this.loginForm.value;
+    if(val.email && val.password){
+      this.authService.login( val.email, val.password).subscribe(
+        (res: JwtTokenResponse) => {
+          this.storageService.saveJwtToken(res.accessToken);
+          console.log("User is logged in");
+          this.router.navigateByUrl('/');
+        },
+      );
+    }
   }
 }

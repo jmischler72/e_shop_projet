@@ -1,8 +1,6 @@
 package fr.springboot.api.controller;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import fr.springboot.api.model.ERole;
@@ -11,7 +9,6 @@ import fr.springboot.api.payload.request.LoginRequest;
 import fr.springboot.api.payload.request.SignupRequest;
 
 import fr.springboot.api.payload.response.JwtResponse;
-import fr.springboot.api.payload.response.MessageResponse;
 import fr.springboot.api.repository.UserRepository;
 import fr.springboot.api.security.jwt.JwtUtils;
 import fr.springboot.api.security.services.UserDetailsImpl;
@@ -29,7 +26,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -78,7 +74,7 @@ public class AuthController {
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+                    .body("Error: Email is already in use!");
         }
 
         // Create new user's account
@@ -90,10 +86,10 @@ public class AuthController {
 
         ERole userRole = null;
 
-        if(strRole == null){
+        if (strRole == null) {
             userRole = ERole.ROLE_USER;
 
-        }else{
+        } else {
             switch (strRole) {
                 case "admin":
                     userRole = ERole.ROLE_ADMIN;
@@ -106,6 +102,6 @@ public class AuthController {
         user.setRole(userRole);
         userRepository.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseEntity.ok("User registered successfully!");
     }
 }
