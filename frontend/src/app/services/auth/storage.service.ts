@@ -17,8 +17,8 @@ export class StorageService {
     localStorage.setItem(JWTTOKEN, jwt);
   }
 
-  public isLoggedIn(): boolean {
-    const user = localStorage.getItem(JWTTOKEN);
-    return !!user;
+
+  public getJwtToken(): string | null {
+    return localStorage.getItem(JWTTOKEN);
   }
 }

@@ -1,4 +1,4 @@
-import {Product} from "./Product";
+import {Product} from "./models/products/Product";
 
 export class ProductOrder {
   constructor(product: Product, quantity: number) {

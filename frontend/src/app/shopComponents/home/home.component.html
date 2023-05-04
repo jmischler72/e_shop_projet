@@ -1,0 +1,6 @@
+<div class="eshop-container">
+
+  <app-navbar [user] = user$|async ></app-navbar>
+  <app-products [filter]="filter" [hidden]="withCart" (productOrder)="addOrder($event)" ></app-products>
+  <app-products-table></app-products-table>
+</div>

@@ -1,0 +1,32 @@
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg border border-gray-300 mx-10 my-5">
+  <table cdk-table [dataSource]="products$" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+
+    <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+      Our products
+      <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of Flowbite products designed to help you work and play, stay organized, get answers, keep in touch, grow your business, and more.</p>
+    </caption>
+
+    <ng-container cdkColumnDef="picture" >
+      <th cdk-header-cell *cdkHeaderCellDef class="px-6 py-3"></th>
+      <td cdk-cell *cdkCellDef="let product" [ngStyle]="{ 'background-image': 'url(' + product.pictureUrl + ')'}" class="px-6 py-4 test">
+        <div class="background-blur">
+          <img class="object-scale-down h-20 content-center" src={{product.pictureUrl}} alt="">
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="product_name" >
+      <th cdk-header-cell *cdkHeaderCellDef class="px-6 py-3"> Nom du produit </th>
+      <td cdk-cell *cdkCellDef="let product" class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap"> {{product.name}} </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="category">
+      <th cdk-header-cell *cdkHeaderCellDef class="px-6 py-3"> Categorie </th>
+      <td cdk-cell *cdkCellDef="let product" class="px-6 py-4"> {{product.category}} </td>
+    </ng-container>
+
+    <tr cdk-header-row *cdkHeaderRowDef="['picture', 'product_name', 'category']" class="text-xs border-b-2 border-orange-300 text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"></tr>
+    <tr cdk-row *cdkRowDef="let product; columns: ['picture', 'product_name', 'category'];" class="bg-white border-b border-orange-200 dark:bg-gray-800 dark:border-gray-700"></tr>
+  </table>
+</div>

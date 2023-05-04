@@ -1,15 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 
-import {User} from "./User";
+import {User} from "../../models/users/User";
 import {catchError, map, throwError} from "rxjs";
-import {ProductOrder} from "./ProductOrder";
+import {ProductOrder} from "../../ProductOrder";
+import {JwtTokenResponse} from "../../models/auth/JwtTokenResponse";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private loginUrl = "/api/login";
+  private userMeUrl = "/api/users";
   private orderUrl = "/api/order";
   private errorData: { errorDesc: string; errorTitle: string };
 
@@ -17,25 +18,14 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-
-  login(email: string, password: string) {
-    var getData = "/connect/" + email + "/" + password;
-    return this.http.get<User>(this.loginUrl + getData)
-      .pipe(map(user => {
-          if (user) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-          }
-        }),
-        catchError(this.handleError)
-      );
+  getUserInfo(){
+    return this.http.get<User>(this.userMeUrl+"/me");
   }
 
-  isLoggedIn() {
-    if (localStorage.getItem('currentUser')) {
-      return true;
-    }
-    return false;
+  getUserInfoFromId(id: number){
+    return this.http.get<User>(this.userMeUrl+"/"+id);
   }
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

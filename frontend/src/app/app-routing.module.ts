@@ -1,11 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {EcommerceComponent} from "./ecommerce/ecommerce.component";
-import {LoginComponent} from "./login/login.component";
+import {HomeComponent} from "./shopComponents/home/home.component";
+import {LoginComponent} from "./shopComponents/login/login.component";
+import {UserComponent} from "./shopComponents/user/user.component";
 
-const routes: Routes = [{path: '', component: EcommerceComponent},
+const routes: Routes = [{path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'cart', component: LoginComponent},];
+  {path: 'user/:id', component: UserComponent},
+  {path: 'user', component: UserComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ProductOrder} from "../../ProductOrder";
-import {ProductService} from "../../product.service";
-import {Product} from "../../Product";
+import {ProductOrder} from "../../../ProductOrder";
+import {ProductService} from "../../../services/products/product.service";
+import {Product} from "../../../models/products/Product";
 
 @Component({
   selector: 'app-products',
@@ -16,7 +16,7 @@ export class ProductsComponent {
 
   shoppingCart: Product[] = [];
 
-  constructor(private ecommerceService: ProductService) {
+  constructor(private productService: ProductService) {
   }
 
   ngOnInit() {
@@ -25,7 +25,7 @@ export class ProductsComponent {
   }
 
   loadProducts() {
-    this.ecommerceService.getAllProducts()
+    this.productService.getAllProducts()
       .subscribe(
         (products: Product[]) => {
           this.products = products;

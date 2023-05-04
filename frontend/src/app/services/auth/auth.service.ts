@@ -1,10 +1,7 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {JwtTokenResponse} from "./JwtTokenResponse";
+import {JwtTokenResponse} from "../../models/auth/JwtTokenResponse";
 
-export class JwtResponse{
-  accessToken: string
-}
 @Injectable({
   providedIn: 'root'
 })

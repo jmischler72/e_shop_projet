@@ -33,4 +33,15 @@ public class UserController {
         return new ResponseEntity<>("No user found", HttpStatus.NOT_FOUND);
 
     }
+
+    @GetMapping("/{id}")
+    public @NotNull ResponseEntity<?> getUserInfo(@PathVariable(value = "id") int id) {
+
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            return new ResponseEntity<>(user.get() ,HttpStatus.OK);
+        }
+        return new ResponseEntity<>("No user found", HttpStatus.NOT_FOUND);
+
+    }
 }

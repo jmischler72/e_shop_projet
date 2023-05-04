@@ -1,0 +1,38 @@
+<nav>
+  <img class="logo" src="../../../../assets/eshop_logo.png">
+  <div class="item search right" tabindex="0">
+    <div class="search-group">
+      <input type="text" [(ngModel)]="filter">
+      <mat-icon *ngIf="filter" (click)="removeFilter()" class="search-icon">close</mat-icon>
+      <mat-icon class="search-icon">search</mat-icon>
+    </div>
+  </div>
+
+  <a *ngIf="user; else noUser" [routerLink]="['user']" class="item">
+    <div class="group" >
+      <mat-icon>account_circle</mat-icon>
+      <div class="detail" >
+        <b>Votre compte</b>
+        <div class="sub">{{user.email}}</div>
+      </div>
+    </div>
+  </a>
+  <ng-template #noUser>
+    <div class="group" [routerLink]="['login']" class="item">
+      <mat-icon>account_circle</mat-icon>
+      <div class="detail" >
+        <b>Compte</b>
+        <div class="sub">Se connecter</div>
+      </div>
+    </div>
+  </ng-template>
+
+  <a class="item">
+    <div class="group">
+      <mat-icon>shopping_cart</mat-icon>
+      <div class="detail">
+        <b>Panier</b>
+      </div>
+    </div>
+  </a>
+</nav>
