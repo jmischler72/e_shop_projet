@@ -18,6 +18,22 @@ export class StorageService {
   }
 
 
+  public isLoggedIn(){
+    const token = localStorage.getItem(JWTTOKEN);
+
+    if(!!token){
+      console.log(token);
+      const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+      if ((Math.floor((new Date).getTime() / 1000)) >= expiry){
+        this.clean();
+        return false;
+      }else{
+        return true;
+      }
+    }
+    return false;
+  }
+
   public getJwtToken(): string | null {
     return localStorage.getItem(JWTTOKEN);
   }

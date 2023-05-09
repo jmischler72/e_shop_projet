@@ -24,7 +24,6 @@ export class UserComponent {
         this.userService.getUserInfoFromId(params['id']).subscribe(
           user => this.user$.next(user)
         )
-
       } else {
         this.userService.getUserInfo().subscribe(
           user => this.user$.next(user)

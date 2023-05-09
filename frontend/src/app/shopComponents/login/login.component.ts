@@ -12,9 +12,6 @@ import {JwtTokenResponse} from "../../models/auth/JwtTokenResponse";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  private error = {};
-  private loginError: string;
-
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +22,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    if (this.storageService.isLoggedIn()){
+      this.router.navigateByUrl('/');
+    }
+
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]

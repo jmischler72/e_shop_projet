@@ -5,6 +5,13 @@ nav {
   font-size: 1em;
   background-color: white;
   color: black;
+  height: 70px;
+  justify-content: space-between;
+}
+
+.nav-item{
+  display: flex;
+  flex-direction: row;
 }
 
 .logo {
@@ -13,62 +20,34 @@ nav {
 }
 
 .item {
+  display: flex;
+  align-items: center;
   padding: 10px;
   text-decoration: none;
   color: black;
 }
 
-.item.search {
-  transition: 0.2s linear;
-  display: flex;
-  justify-content: center;
-  flex-grow: 1;
-  margin: 0 0 0 auto;
-  height: 50px;
-
-  .search-group {
-    display: flex;
-    width: 100%;
-    max-width: 700px;
-    height: 32px;
-    border-radius: 20px;
-    border: 1px solid #fc9403;
-    overflow: hidden;
-    background: white;
-
-    input {
-      margin-left: 15px;
-      width: 100%;
-      outline: none;
-      max-width: 100%;
-      border: 0;
-      border-right: 1px solid grey;
-
-    }
-
-    .search-icon {
-      margin-left: 10px;
-      margin-right: 20px;
-      margin-top: 3px;
-      cursor: pointer;
-      color: grey;
-    }
-
-    .search-icon:hover {
-      color: black;
-    }
-  }
-
-}
-
 .group {
   display: flex;
+  flex-direction: row;
   align-items: center;
   font-size: 0.9em;
   margin-right: 10px;
 
+  mat-icon{
+    color: gray;
+  }
+
   .detail {
-    margin: 5px
+    margin: 5px;
+
+    .sub{
+      text-align: center;
+      border-radius: 100px;
+      background-color: #fc9403;
+      color: white;
+      padding: 4px;
+    }
   }
 }
 

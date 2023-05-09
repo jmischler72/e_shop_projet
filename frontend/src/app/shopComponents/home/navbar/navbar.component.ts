@@ -8,11 +8,8 @@ import {User} from "../../../models/users/User";
 })
 export class NavbarComponent {
 
-  filter = "";
-
   @Input() user: User|null ;
+  @Input() cartNumber: number ;
 
-  removeFilter() {
-    this.filter = '';
-  }
+
 }

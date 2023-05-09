@@ -1,8 +1,8 @@
 
-.eshop-container {
+:host{
   display: flex;
   flex-direction: column;
-  background-image: url('/src/assets/background.jpg');
+  background-image: url('/assets/background.jpg');
   background-position: center;
   background-attachment: fixed;
   height: 100vh;

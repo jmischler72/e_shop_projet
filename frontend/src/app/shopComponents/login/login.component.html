@@ -1,21 +1,23 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="../../../assets/eshop_logo.png" id="icon" alt="User Icon" />
+      <img ngSrc="../../../assets/eshop_logo.png" id="icon" alt="User Icon" height="168" width="1000"/>
     </div>
 
     <!-- Login Form -->
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <input type="text" id="login" class="fadeIn second" name="email" formControlName="email" placeholder="E-mail">
-      <input type="text" id="password" class="fadeIn third" name="password" formControlName="password" placeholder="Mot de passe">
+      <input type="password" id="password" class="fadeIn third" name="password" formControlName="password" placeholder="Mot de passe">
       <input type="submit" class="fadeIn fourth" value="Se connecter">
     </form>
 
+    <div id="formFooter">
+      <a class="underlineHover" [routerLink]="['../signup']">S'inscrire</a>
+    </div>
   </div>
+
 </div>

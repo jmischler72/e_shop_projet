@@ -17,6 +17,9 @@ import { UserComponent } from './shopComponents/user/user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ProductsTableComponent} from "./shopComponents/home/products-table/products-table.component";
 import {CdkTableModule} from "@angular/cdk/table";
+import {NgOptimizedImage} from "@angular/common";
+import {SnackbarInterceptor} from "./helpers/SnackbarInterceptor";
+import { SearchbarProductsComponent } from './shopComponents/home/searchbar-products/searchbar-products.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import {CdkTableModule} from "@angular/cdk/table";
     FilterPipe,
     ShoppingCartComponent,
     NavbarComponent,
-    UserComponent
+    UserComponent,
+    SearchbarProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +43,10 @@ import {CdkTableModule} from "@angular/cdk/table";
     MatSnackBarModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    CdkTableModule
+    CdkTableModule,
+    NgOptimizedImage
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}, {provide: HTTP_INTERCEPTORS, useClass: SnackbarInterceptor, multi: true},],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,13 +1,29 @@
 
-.test{
+.products-container {
+  background-color: white;
+
+
+  .searchbar {
+    margin-top: 20px;
+  }
+}
+
+.test {
   display: flex;
   justify-content: center;
-  backdrop-filter: blur(8px);
   background-color: rgba(255, 255, 255, 0.4);
 
 
 }
-.background-blur{
+
+.background-blur {
   background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
 
 }
+
+mat-header-cell, mat-cell {
+  justify-content: center;
+}
+
+

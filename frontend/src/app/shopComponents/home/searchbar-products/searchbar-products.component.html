@@ -1,0 +1,7 @@
+<div class="item search right" tabindex="0">
+  <div class="search-group">
+    <input type="text" [(ngModel)]="filter">
+    <mat-icon *ngIf="filter" (click)="removeFilter()" class="search-icon">close</mat-icon>
+    <mat-icon class="search-icon">search</mat-icon>
+  </div>
+</div>

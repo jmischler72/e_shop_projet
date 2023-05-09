@@ -7,7 +7,9 @@ import {UserComponent} from "./shopComponents/user/user.component";
 const routes: Routes = [{path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'user/:id', component: UserComponent},
-  {path: 'user', component: UserComponent}];
+  {path: 'user', component: UserComponent},
+  {path: 'signup', component: UserComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
