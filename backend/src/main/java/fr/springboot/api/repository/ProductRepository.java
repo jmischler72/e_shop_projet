@@ -1,5 +1,6 @@
 package fr.springboot.api.repository;
 
+import fr.springboot.api.model.ECategory;
 import fr.springboot.api.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -10,5 +11,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByName(String name);
     List<Product> findAllByNameContaining(String infix);
-    List<Product> findAllByCategory(String category);
+    List<Product> findAllByCategory(ECategory category);
 }

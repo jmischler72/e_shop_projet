@@ -20,7 +20,6 @@ export class ProductsTableComponent {
 
   ngOnInit() {
     this.loadProducts()
-
   }
 
   loadProducts() {

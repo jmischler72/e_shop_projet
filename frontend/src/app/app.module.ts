@@ -1,4 +1,4 @@
-import {ErrorHandler, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -20,6 +20,8 @@ import {CdkTableModule} from "@angular/cdk/table";
 import {NgOptimizedImage} from "@angular/common";
 import {SnackbarInterceptor} from "./helpers/SnackbarInterceptor";
 import { SearchbarProductsComponent } from './shopComponents/home/searchbar-products/searchbar-products.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { SearchbarProductsComponent } from './shopComponents/home/searchbar-prod
     ReactiveFormsModule,
     BrowserAnimationsModule,
     CdkTableModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}, {provide: HTTP_INTERCEPTORS, useClass: SnackbarInterceptor, multi: true},],
   bootstrap: [AppComponent]

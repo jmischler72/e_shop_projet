@@ -25,5 +25,12 @@ export class ProductService {
       )
   }
 
+  getAllCategories(){
+    return this.http.get<string[]>(this.productsUrl + "/categories")
+      .pipe(
+        tap(res=> console.log(res)),
+      )
+  }
+
 
 }

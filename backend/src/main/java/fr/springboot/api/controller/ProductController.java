@@ -1,5 +1,6 @@
 package fr.springboot.api.controller;
 
+import fr.springboot.api.model.ECategory;
 import fr.springboot.api.model.Product;
 import fr.springboot.api.repository.ProductRepository;
 import fr.springboot.api.security.services.UserDetailsImpl;
@@ -11,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -32,10 +34,16 @@ public class ProductController {
         return productRepository.findAll();
     }
 
-//    @GetMapping(value = {  "/get-by-category/{category}" })
-//    public @NotNull Iterable<Product> getProductsByCategory(@PathVariable(value = "category") String category) {
-//        return productRepository.findAllByCategory(category);
-//    }
+    @GetMapping("/categories")
+    public Iterable<ECategory> getCategories() {
+        return List.of(ECategory.values());
+    }
+    @GetMapping(value = {  "/category/{category}" })
+    public @NotNull Iterable<Product> getProductsByCategory(@PathVariable(value = "category") String category) {
+        System.out.println(category);
+        ECategory category_enum = ECategory.valueOf(category);
+        return productRepository.findAllByCategory(category_enum);
+    }
 //
 //    @GetMapping(value = {  "/{id}" })
 //    public @NotNull Product getProductById(@PathVariable(value = "id") Long id) {

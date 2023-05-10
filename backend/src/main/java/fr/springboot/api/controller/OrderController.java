@@ -41,7 +41,7 @@ public class OrderController {
         Order order = new Order();
         List<OrderItemDto> orderItemsDtos = shoppingCart.getProductItems();
         List<OrderItem> orderItems = new ArrayList<>();
-        order = orderRepository.save(order);
+//        order = orderRepository.save(order);
 
         for (OrderItemDto entry : orderItemsDtos) {
             if (entry.getProduct().getStock() == 0) {

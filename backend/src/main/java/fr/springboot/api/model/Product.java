@@ -3,6 +3,9 @@ package fr.springboot.api.model;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Table(name = "product")
 @Entity
 public class Product {
@@ -26,8 +29,10 @@ public class Product {
     @Column(name = "picture_url")
     private String pictureUrl;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "category")
-    private String category;
+    private ECategory category;
+
     public String getName() {
         return name;
     }
@@ -39,7 +44,7 @@ public class Product {
     public String getPictureUrl() {
         return pictureUrl;
     }
-    public String getCategory() {
+    public ECategory getCategory() {
         return category;
     }
 
@@ -58,7 +63,7 @@ public class Product {
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
     }
-    public void setCategory(String category) {
+    public void setCategory(ECategory category) {
         this.category = category;
     }
 
