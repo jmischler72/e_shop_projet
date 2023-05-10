@@ -28,9 +28,7 @@ public class ProductController {
     }
 
     @GetMapping()
-    public @NotNull Iterable<Product> getProducts(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-
-        System.out.println(userDetails.getUsername());
+    public @NotNull Iterable<Product> getProducts() {
         return productRepository.findAll();
     }
 

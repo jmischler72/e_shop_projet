@@ -1,8 +1,8 @@
-INSERT INTO user (email, password, role) VALUES ('admin1@test.com', '$2a$10$FiH8giEy6sJeOv0SUBSBD.Vo4Qgmn5pjuXqEIn1L8xQrSfXYqojpG', 'ROLE_ADMIN');
+INSERT INTO user (email, password, role, lastname) VALUES ('admin1@test.com', '$2a$10$FiH8giEy6sJeOv0SUBSBD.Vo4Qgmn5pjuXqEIn1L8xQrSfXYqojpG', 'ROLE_ADMIN', 'test');
 INSERT INTO user (email, password, role) VALUES ('test123@test.com', '$2a$10$FiH8giEy6sJeOv0SUBSBD.Vo4Qgmn5pjuXqEIn1L8xQrSfXYqojpG', 'ROLE_USER');
 
 INSERT INTO user (email, password, role) VALUES ('test@test.com', '$2a$10$FiH8giEy6sJeOv0SUBSBD.Vo4Qgmn5pjuXqEIn1L8xQrSfXYqojpG', 'ROLE_USER');
-INSERT INTO user (email, password, role) VALUES ('admin@test.com', '$2a$10$FiH8giEy6sJeOv0SUBSBD.Vo4Qgmn5pjuXqEIn1L8xQrSfXYqojpG', 'ROLE_USER');
+INSERT INTO user (email, password, role, firstname, lastname, picture_url, description) VALUES ('admin@test.com', '$2a$10$FiH8giEy6sJeOv0SUBSBD.Vo4Qgmn5pjuXqEIn1L8xQrSfXYqojpG', 'ROLE_USER', 'admin', 'test', 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/16:9/w_2123,h_1194,c_limit/phonepicutres-TA.jpg', 'teetstst tsts');
 
 
 INSERT INTO product (name, price, stock, picture_url, category) VALUES ('Animal Crossing: New Horizons', 59.99, 10, 'https://fs-prod-cdn.nintendo-europe.com/media/images/11_square_images/games_18/nintendo_switch_5/SQ_NSwitch_AnimalCrossingNewHorizons_image500w.jpg', 'Aventure');

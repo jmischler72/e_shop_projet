@@ -19,9 +19,10 @@ import {ProductsTableComponent} from "./shopComponents/home/products-table/produ
 import {CdkTableModule} from "@angular/cdk/table";
 import {NgOptimizedImage} from "@angular/common";
 import {SnackbarInterceptor} from "./helpers/SnackbarInterceptor";
-import { SearchbarProductsComponent } from './shopComponents/home/searchbar-products/searchbar-products.component';
+import { SearchbarProductsComponent } from './shopComponents/home/products-table/searchbar-products/searchbar-products.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
+import { ProductsCarouselComponent } from './shopComponents/home/products-carousel/products-carousel.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatSelectModule} from "@angular/material/select";
     ShoppingCartComponent,
     NavbarComponent,
     UserComponent,
-    SearchbarProductsComponent
+    SearchbarProductsComponent,
+    ProductsCarouselComponent
   ],
   imports: [
     BrowserModule,

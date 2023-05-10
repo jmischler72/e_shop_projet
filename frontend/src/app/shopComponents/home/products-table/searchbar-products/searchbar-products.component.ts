@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Observable} from "rxjs";
-import {ProductService} from "../../../services/products/product.service";
+import {ProductService} from "../../../../services/products/product.service";
 import {FormControl} from "@angular/forms";
 
 @Component({

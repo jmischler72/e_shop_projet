@@ -1,5 +1,5 @@
 <nav>
-  <img class="nav-item logo" src="../../../../assets/eshop_logo.png">
+  <img [routerLink]="['']" class="nav-item logo hover:cursor-pointer" src="../../../../assets/eshop_logo.png">
 
   <div class="nav-item">
     <a *ngIf="user; else noUser" [routerLink]="['user']" class="item">

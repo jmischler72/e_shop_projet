@@ -27,7 +27,7 @@ export class ProductsTableComponent {
       .pipe(
         map((products) => {
           products.forEach((product) => {
-            const index = this.shoppingCart.map(function(e) { return e.id; }).indexOf(product.id);
+            const index = this.searchProductInShoppingCart(product);
             if (index > -1) {
               product.quantity = this.shoppingCart[index].quantity;
             }
@@ -35,6 +35,10 @@ export class ProductsTableComponent {
           return products;
         })
       );
+  }
+
+  searchProductInShoppingCart(product : Product){
+    return this.shoppingCart.map(function(e) { return e.id; }).indexOf(product.id);
   }
 
   addToCart(product: Product) {
