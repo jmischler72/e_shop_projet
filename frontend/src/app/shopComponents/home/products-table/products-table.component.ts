@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ProductService} from "../../../services/products/product.service";
 import {Product} from "../../../models/products/Product";
-import {map, Observable} from "rxjs";
+import {finalize, map, Observable} from "rxjs";
 import {CartItem} from "../../../models/products/CartItem";
 
 @Component({
@@ -9,20 +9,22 @@ import {CartItem} from "../../../models/products/CartItem";
   templateUrl: './products-table.component.html',
   styleUrls: ['./products-table.component.scss']
 })
-export class ProductsTableComponent {
+export class ProductsTableComponent{
   @Input() shoppingCart: CartItem[];
   @Output() productAdded = new EventEmitter<Product>();
 
   products$: Observable<Product[]>;
+  isLoading: boolean;
 
   constructor(private productService: ProductService) {
   }
 
   ngOnInit() {
-    this.loadProducts()
+    this.loadProducts();
   }
 
   loadProducts() {
+    this.isLoading = true;
     this.products$ = this.productService.getAllProducts()
       .pipe(
         map((products) => {
@@ -33,7 +35,8 @@ export class ProductsTableComponent {
             }
           })
           return products;
-        })
+        }),
+        finalize(()=> this.isLoading = false)
       );
   }
 

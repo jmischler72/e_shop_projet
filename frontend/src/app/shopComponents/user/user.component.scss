@@ -1,3 +1,8 @@
 :host{
   background: yellow;
 }
+
+.orders{
+  display: flex;
+  flex-direction: column;
+}

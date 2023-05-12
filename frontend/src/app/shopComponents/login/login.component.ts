@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth/auth.service";
 import {AlertService} from "../../services/alert/alert.service";
+import {SpinnerService} from "../../services/spinner/spinner.service";
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    public spinnerService: SpinnerService
   ) {
   }
 

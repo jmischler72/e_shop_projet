@@ -27,7 +27,14 @@
       </div>
       <input type="password" id="password" class="fadeIn third" name="password" formControlName="password"
              placeholder="Mot de passe">
-      <input type="submit" class="fadeIn fourth" value="Se connecter">
+      <button type="submit" class="fadeIn fourth" >
+        <mat-spinner [diameter]="50" *ngIf="spinnerService.visibility | async; else connectText">
+        </mat-spinner>
+        <ng-template #connectText>
+          <span>Se connecter</span>
+        </ng-template>
+      </button>
+
     </form>
     <div id="formFooter">
       <a class="underlineHover" [routerLink]="['/signup']">S'inscrire</a>

@@ -11,22 +11,26 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from '@angular/material/icon';
 import {FilterPipe} from './shopComponents/home/filter.pipe';
 import {ShoppingCartComponent} from './shopComponents/home/shopping-cart/shopping-cart.component'
-import { JwtInterceptor } from "./helpers/JwtInterceptor";
-import { NavbarComponent } from './shopComponents/home/navbar/navbar.component';
-import { UserComponent } from './shopComponents/user/user.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {JwtInterceptor} from "./helpers/JwtInterceptor";
+import {NavbarComponent} from './shopComponents/home/navbar/navbar.component';
+import {UserComponent} from './shopComponents/user/user.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ProductsTableComponent} from "./shopComponents/home/products-table/products-table.component";
 import {CdkTableModule} from "@angular/cdk/table";
 import {NgOptimizedImage} from "@angular/common";
 import {SnackbarInterceptor} from "./helpers/SnackbarInterceptor";
-import { SearchbarProductsComponent } from './shopComponents/home/products-table/searchbar-products/searchbar-products.component';
+import {
+  SearchbarProductsComponent
+} from './shopComponents/home/products-table/searchbar-products/searchbar-products.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
-import { ProductsCarouselComponent } from './shopComponents/home/products-carousel/products-carousel.component';
+import {ProductsCarouselComponent} from './shopComponents/home/products-carousel/products-carousel.component';
 import {
   OutsideClickDirective,
 } from './shopComponents/home/products-table/searchbar-products/outside-click.directive';
-import { AlertComponent } from './shopComponents/alert/alert.component';
+import {AlertComponent} from './shopComponents/alert/alert.component';
+import {LoadingInterceptor} from "./helpers/LoadingInterceptor";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -56,9 +60,12 @@ import { AlertComponent } from './shopComponents/alert/alert.component';
     CdkTableModule,
     NgOptimizedImage,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}, {provide: HTTP_INTERCEPTORS, useClass: SnackbarInterceptor, multi: true},],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: SnackbarInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
