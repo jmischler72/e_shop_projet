@@ -70,9 +70,9 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/products").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/products/**").permitAll()
-                        .anyRequest().authenticated()
-                );
+                        .anyRequest().authenticated());
 
         http.authenticationProvider(authenticationProvider());
 

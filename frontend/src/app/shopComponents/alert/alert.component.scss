@@ -1,0 +1,21 @@
+:host{
+  display: flex;
+  justify-content: center;
+}
+
+.alert{
+  display: flex;
+  justify-content: center;
+  height: 88px;
+  text-align: center;
+  flex-direction: row;
+  align-items: center;
+
+  background: lightpink;
+  width: 90%;
+  max-width: 530px;
+
+  button{
+    display: flex;
+  }
+}

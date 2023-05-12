@@ -8,8 +8,8 @@ const JWTTOKEN = 'jwtToken';
 export class StorageService {
   constructor() {}
 
-  clean(): void {
-    localStorage.clear();
+  removeJwtToken(): void {
+    localStorage.removeItem(JWTTOKEN);
   }
 
   public saveJwtToken(jwt: string): void {
@@ -18,13 +18,13 @@ export class StorageService {
   }
 
 
-  public isLoggedIn(){
+  public isJwtTokenValid(){
     const token = localStorage.getItem(JWTTOKEN);
 
     if(!!token){
       const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
       if ((Math.floor((new Date).getTime() / 1000)) >= expiry){
-        this.clean();
+        this.removeJwtToken();
         return false;
       }else{
         return true;

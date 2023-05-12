@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth/auth.service";
-import {StorageService} from "../../services/auth/storage.service";
-import {JwtTokenResponse} from "../../models/auth/JwtTokenResponse";
+import {AlertService} from "../../services/alert/alert.service";
 
 @Component({
   selector: 'app-login',
@@ -17,13 +16,12 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private storageService: StorageService
+    private alertService: AlertService
   ) {
   }
 
   ngOnInit() {
-
-    if (this.storageService.isLoggedIn()){
+    if (this.authService.isLoggedIn()) {
       this.router.navigateByUrl('/');
     }
 
@@ -33,19 +31,29 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  get email() { return this.loginForm.get('email'); }
-  get password() { return this.loginForm.get('password'); }
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
 
   onSubmit() {
-    const val = this.loginForm.value;
-    if(val.email && val.password){
-      this.authService.login( val.email, val.password).subscribe(
-        (res: JwtTokenResponse) => {
-          this.storageService.saveJwtToken(res.accessToken);
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.authService.login(this.email?.value, this.password?.value).subscribe({
+        next: () => {
           console.log("User is logged in");
           this.router.navigateByUrl('/');
         },
-      );
-    }
+        error: error => {
+          this.alertService.error(error);
+        }
+      }
+    );
+
   }
+
 }

@@ -2,7 +2,7 @@
   <img [routerLink]="['']" class="nav-item logo hover:cursor-pointer" src="../../../../assets/eshop_logo.png">
 
   <div class="nav-item">
-    <a *ngIf="user; else noUser" [routerLink]="['user']" class="item">
+    <a *ngIf="user; else noUser" [routerLink]="['/user']" class="item">
       <div class="group">
         <mat-icon>account_circle</mat-icon>
         <div class="detail">
@@ -12,7 +12,7 @@
       </div>
     </a>
     <ng-template #noUser>
-      <a class="item" [routerLink]="['login']">
+      <a class="item" [routerLink]="['/login']">
         <div class="group">
           <mat-icon>account_circle</mat-icon>
           <div class="detail">

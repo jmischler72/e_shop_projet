@@ -23,6 +23,10 @@ import { SearchbarProductsComponent } from './shopComponents/home/products-table
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import { ProductsCarouselComponent } from './shopComponents/home/products-carousel/products-carousel.component';
+import {
+  OutsideClickDirective,
+} from './shopComponents/home/products-table/searchbar-products/outside-click.directive';
+import { AlertComponent } from './shopComponents/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,9 @@ import { ProductsCarouselComponent } from './shopComponents/home/products-carous
     NavbarComponent,
     UserComponent,
     SearchbarProductsComponent,
-    ProductsCarouselComponent
+    ProductsCarouselComponent,
+    OutsideClickDirective,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

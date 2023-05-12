@@ -18,12 +18,12 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  getUserInfo(){
-    return this.http.get<User>(this.userMeUrl+"/me");
+  getUserInfo() {
+    return this.http.get<User>(this.userMeUrl + "/me");
   }
 
-  getUserInfoFromId(id: number){
-    return this.http.get<User>(this.userMeUrl+"/"+id);
+  getUserInfoFromId(id: number) {
+    return this.http.get<User>(this.userMeUrl + "/" + id);
   }
 
 
@@ -49,13 +49,9 @@ export class UserService {
 
   addOrder(shoppingCart: ProductOrder[], userId: number) {
 
-    return this.http.post<ProductOrder[]>(this.orderUrl+"/create/" +userId, {"productItems": shoppingCart})
+    return this.http.post<ProductOrder[]>(this.orderUrl + "/create/" + userId, {"productItems": shoppingCart})
       .pipe(map(result => {
           return result;
-
-        }),
-        catchError(this.handleError)
-      );
-
+        }));
   }
 }

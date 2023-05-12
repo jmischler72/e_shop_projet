@@ -1,13 +1,14 @@
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg border border-gray-300 mx-10 my-5 products-container">
-  <app-searchbar-products class="searchbar"></app-searchbar-products>
+  <div class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+    <h1>Naviguer les jeux</h1>
+    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Rechercher parmis les nombreux jeux
+      disponibles dans le e-shop !</p>
+  </div>
+
+  <div class="searchbar">
+    <app-searchbar-products class="searchbar"></app-searchbar-products>
+  </div>
   <table cdk-table [dataSource]="products$" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-
-    <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-      Our products
-      <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of Flowbite products designed
-        to help you work and play, stay organized, get answers, keep in touch, grow your business, and more.</p>
-    </caption>
-
     <ng-container cdkColumnDef="picture">
       <th cdk-header-cell *cdkHeaderCellDef class="px-6 py-3"></th>
       <td cdk-cell *cdkCellDef="let product" [ngStyle]="{ 'background-image': 'url(' + product.pictureUrl + ')'}"
@@ -21,7 +22,7 @@
     <ng-container cdkColumnDef="product_name">
       <th cdk-header-cell *cdkHeaderCellDef class="px-6 py-3"></th>
       <td cdk-cell *cdkCellDef="let product"
-          class="px-6 py-4 font-bold text-lg text-gray-700 whitespace-nowrap text-ellipsis"> {{product.name}} </td>
+          class="px-6 py-4 font-bold text-lg text-gray-700 whitespace-nowrap text-ellipsis pl-10"> {{product.name}} </td>
     </ng-container>
 
     <ng-container cdkColumnDef="category">
@@ -77,7 +78,8 @@
         </div>
 
         <ng-template #inCart>
-          <div class=" flex flex-row bg-green-500 text-white font-bold py-2 px-2 rounded-full ml-20 w-1/3 justify-around">
+          <div
+            class=" flex flex-row bg-green-500 text-white font-bold py-2 px-2 rounded-full ml-20 w-1/3 justify-around">
             <h2 class="text-sm mr-2">Dans le panier </h2>
             <mat-icon>shopping_cart</mat-icon>
           </div>
