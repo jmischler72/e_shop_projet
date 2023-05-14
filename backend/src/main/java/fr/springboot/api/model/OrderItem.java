@@ -1,42 +1,44 @@
 package fr.springboot.api.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.jetbrains.annotations.NotNull;
 
 @Entity
+@Table(name = "order_item")
+
 public class OrderItem {
-    @EmbeddedId
-    @JsonIgnore
-    private OrderItemPK pk;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="order_id", nullable=false)
+    private Order order;
+    @Column(name = "quantity")
+    private int quantity;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
 
     public OrderItem() {
         super();
     }
 
     public OrderItem(Order order, Product product, Integer quantity) {
-        pk = new OrderItemPK();
-        pk.setOrder(order);
-        pk.setProduct(product);
+        this.order = order;
+        this.product = product;
         this.quantity = quantity;
     }
 
-    @Transient
-    public Product getProduct() {
-        return this.pk.getProduct();
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    @Transient
-    public Double getTotalPrice() {
-        return getProduct().getPrice() * getQuantity();
-    }
-
-    public OrderItemPK getPk() {
-        return pk;
-    }
-
-    public void setPk(OrderItemPK pk) {
-        this.pk = pk;
+    public Long getId() {
+        return id;
     }
 
     public Integer getQuantity() {
@@ -47,16 +49,19 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    @Column(name = "quantity")
-    @NotNull
-    private int quantity;
+    public Product getProduct() {
+        return product;
+    }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((pk == null) ? 0 : pk.hashCode());
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
-        return result;
+    public Order order() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

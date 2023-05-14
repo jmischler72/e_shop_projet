@@ -6,20 +6,18 @@ import fr.springboot.api.repository.OrderItemRepository;
 import fr.springboot.api.repository.OrderRepository;
 import fr.springboot.api.repository.ProductRepository;
 import fr.springboot.api.repository.UserRepository;
-import org.jetbrains.annotations.NotNull;
+import fr.springboot.api.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.time.LocalDate;
 import java.util.*;
 
 @RestController
-@RequestMapping("api/order")
+@RequestMapping("/api/order")
 public class OrderController {
     @Autowired
     OrderRepository orderRepository;
@@ -30,43 +28,40 @@ public class OrderController {
     @Autowired
     ProductRepository productRepository;
 
-    @PostMapping("/create/{id}")
-    public ResponseEntity<?> createOrder(@RequestBody ShoppingCart shoppingCart, @PathVariable Long id) {
-        Optional<User> user = userRepository.findById(id);
+    @PostMapping("/create")
+    public ResponseEntity<?> createOrder(@RequestBody List<OrderItemDto> shoppingCart, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
 
-        if(!user.isPresent()) {
-            return new ResponseEntity<>("No account matches this id", HttpStatus.NOT_FOUND);
+        if (user.isEmpty()) {
+            return new ResponseEntity<>("No account found", HttpStatus.NOT_FOUND);
         }
 
         Order order = new Order();
-        List<OrderItemDto> orderItemsDtos = shoppingCart.getProductItems();
         List<OrderItem> orderItems = new ArrayList<>();
-//        order = orderRepository.save(order);
 
-        for (OrderItemDto entry : orderItemsDtos) {
-            if (entry.getProduct().getStock() == 0) {
-                return new ResponseEntity<>("The product "+entry.getProduct().getId()+" is not in stock", HttpStatus.BAD_REQUEST);
+        for (OrderItemDto item : shoppingCart) {
+            Optional<Product> product = productRepository.findById(item.getProductId());
+
+            if (product.isEmpty()) {
+                return new ResponseEntity<>("The product with the id: " + item.getProductId() + "was not found", HttpStatus.NOT_FOUND);
             }
 
-            OrderItem orderItem = new OrderItem(order, entry.getProduct(), entry.getQuantity());
+            if (product.get().getStock() == 0) {
+                return new ResponseEntity<>("The product " + product.get().getName() + " is not in stock", HttpStatus.OK);
+            }
+
+            OrderItem orderItem = new OrderItem(order, product.get(), item.getQuantity());
             orderItemRepository.save(orderItem);
-            updateStock(entry.getProduct(), entry.getQuantity());
+            this.updateStock(product.get(), item.getQuantity());
             orderItems.add(orderItem);
         }
+
 
         order.setDateCreated(LocalDate.now());
         order.setUserId(user.get().getId());
         order.setProducts(orderItems);
 
         orderRepository.save(order);
-
-        String uri = ServletUriComponentsBuilder
-                .fromCurrentServletMapping()
-                .path("/api/orders/{id}")
-                .buildAndExpand(order.getId())
-                .toString();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", uri);
 
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
@@ -80,7 +75,7 @@ public class OrderController {
     public ResponseEntity<?> getAllOrdersByUserId(@PathVariable Long id) {
         Optional<User> user = userRepository.findById(id);
 
-        if(!user.isPresent()) {
+        if (user.isEmpty()) {
             return new ResponseEntity<>("No account matches this id", HttpStatus.NOT_FOUND);
         }
 
@@ -94,16 +89,4 @@ public class OrderController {
         return orderRepository.findAll();
     }
 
-    public static class ShoppingCart {
-
-        private List<OrderItemDto> productItems;
-
-        public List<OrderItemDto> getProductItems() {
-            return productItems;
-        }
-
-        public void setProductItems(List<OrderItemDto> productItems) {
-            this.productItems = productItems;
-        }
-    }
 }

@@ -4,13 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "orders") //order is a SQL action so this entity cant be called like that
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="products")
 public class Order {
     @Id
@@ -22,24 +21,9 @@ public class Order {
     private Long userId;
 
     @JsonFormat(pattern = "dd/MM/yyyy") private LocalDate dateCreated;
-    @OneToMany(mappedBy = "pk.order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order")
     private List<OrderItem> products;
 
-    @Transient
-    public Double getTotalOrderPrice() {
-        double sum = 0D;
-        List<OrderItem> products = getProducts();
-        for (OrderItem item : products) {
-            sum += item.getTotalPrice();
-        }
-
-        return sum;
-    }
-
-    @Transient
-    public int getNumberOfProducts() {
-        return this.products.size();
-    }
 
     public Long getId() {
         return id;

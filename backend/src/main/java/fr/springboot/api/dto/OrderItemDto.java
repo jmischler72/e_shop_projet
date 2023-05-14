@@ -1,17 +1,15 @@
 package fr.springboot.api.dto;
 
-import fr.springboot.api.model.Product;
-
 public class OrderItemDto {
-    private Product product;
+    private Long product_id;
     private Integer quantity;
 
-    public Product getProduct() {
-        return product;
+    public Long getProductId() {
+        return product_id;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(Long product_id) {
+        this.product_id = product_id;
     }
 
     public Integer getQuantity() {
