@@ -1,11 +1,15 @@
 # e_shop_projet
 
-##Backend
-Initialisation Base de données
-- installer mysql
+Projet Full-Stack de site de e-commerce
 
-sudo mysql -u root
+## Technologies utilisés :
+- Angular : Pour la partie frontend
+- Spring Boot : Framework backend en Java
+- MariaDB : Base de données basé sur MySQL
 
-create database eshop;
-create user 'default_user' identified by 'default_password';
-grant all on eshop.* to 'default_user';
+## Prérequis
+- Java 17
+- Node.js -> il est conseillé d'utiliser NVM pour l'installer
+- Yarn
+## Démarrer le projet
+Les informations pour démarrer les deux parties frontend et backend sont disponibles dans les dossiers respectifs
