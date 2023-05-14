@@ -1,5 +1,5 @@
 <nav>
-  <img [routerLink]="['']" class="nav-item logo hover:cursor-pointer" src="../../../../assets/eshop_logo.png">
+  <img [routerLink]="['']" class="nav-item logo hover:cursor-pointer" src="../../../assets/eshop_logo.png">
 
   <div class="nav-item">
     <a *ngIf="user; else noUser" [routerLink]="['/user']" class="item">
@@ -22,7 +22,7 @@
       </a>
     </ng-template>
 
-    <a class="item">
+    <a class="item" [routerLink]="['/cart']">
       <div class="group">
         <mat-icon>shopping_cart</mat-icon>
         <div class="detail">

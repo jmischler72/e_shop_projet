@@ -12,7 +12,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {FilterPipe} from './shopComponents/home/filter.pipe';
 import {ShoppingCartComponent} from './shopComponents/home/shopping-cart/shopping-cart.component'
 import {JwtInterceptor} from "./helpers/JwtInterceptor";
-import {NavbarComponent} from './shopComponents/home/navbar/navbar.component';
+import {NavbarComponent} from './shopComponents/navbar/navbar.component';
 import {UserComponent} from './shopComponents/user/user.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ProductsTableComponent} from "./shopComponents/home/products-table/products-table.component";
@@ -31,6 +31,7 @@ import {
 import {AlertComponent} from './shopComponents/alert/alert.component';
 import {LoadingInterceptor} from "./helpers/LoadingInterceptor";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { CartComponent } from './shopComponents/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     SearchbarProductsComponent,
     ProductsCarouselComponent,
     OutsideClickDirective,
-    AlertComponent
+    AlertComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../models/users/User";
 import {UserService} from "../../services/users/user.service";
-import {BehaviorSubject, delay} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 import {Product} from "../../models/products/Product";
 import {CartService} from "../../services/products/cart.service";
 import {CartItem} from "../../models/products/CartItem";
