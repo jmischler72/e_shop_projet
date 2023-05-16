@@ -4,51 +4,27 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HomeComponent} from './shopComponents/home/home.component';
-import {ProductsComponent} from './shopComponents/home/products/products.component';
-import {LoginComponent} from './shopComponents/login/login.component';
+import {LoginComponent} from './components/login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from '@angular/material/icon';
-import {FilterPipe} from './shopComponents/home/filter.pipe';
-import {ShoppingCartComponent} from './shopComponents/home/shopping-cart/shopping-cart.component'
 import {JwtInterceptor} from "./helpers/JwtInterceptor";
-import {NavbarComponent} from './shopComponents/navbar/navbar.component';
-import {UserComponent} from './shopComponents/user/user.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ProductsTableComponent} from "./shopComponents/home/products-table/products-table.component";
 import {CdkTableModule} from "@angular/cdk/table";
 import {NgOptimizedImage} from "@angular/common";
 import {SnackbarInterceptor} from "./helpers/SnackbarInterceptor";
-import {
-  SearchbarProductsComponent
-} from './shopComponents/home/products-table/searchbar-products/searchbar-products.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
-import {ProductsCarouselComponent} from './shopComponents/home/products-carousel/products-carousel.component';
-import {
-  OutsideClickDirective,
-} from './shopComponents/home/products-table/searchbar-products/outside-click.directive';
-import {AlertComponent} from './shopComponents/alert/alert.component';
+import {AlertComponent} from './components/shop/alert/alert.component';
 import {LoadingInterceptor} from "./helpers/LoadingInterceptor";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import { CartComponent } from './shopComponents/cart/cart.component';
+import {AuthGuardService} from "./services/auth/auth-guard.service";
+import {ShopModule} from "./components/shop/shop.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    ProductsComponent,
-    ProductsTableComponent,
     LoginComponent,
-    FilterPipe,
-    ShoppingCartComponent,
-    NavbarComponent,
-    UserComponent,
-    SearchbarProductsComponent,
-    ProductsCarouselComponent,
-    OutsideClickDirective,
     AlertComponent,
-    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -63,11 +39,13 @@ import { CartComponent } from './shopComponents/cart/cart.component';
     NgOptimizedImage,
     MatFormFieldModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ShopModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: SnackbarInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}],
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
+    AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

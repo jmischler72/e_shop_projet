@@ -1,16 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from "./shopComponents/home/home.component";
-import {LoginComponent} from "./shopComponents/login/login.component";
-import {UserComponent} from "./shopComponents/user/user.component";
-import {CartComponent} from "./shopComponents/cart/cart.component";
+import {LoginComponent} from "./components/login/login.component";
+
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '',
+    loadChildren: () =>
+      import('./components/shop/shop.module').then(m => m.ShopModule)},
   {path: 'login', component: LoginComponent},
-  {path: 'user', component: UserComponent},
-  {path: 'signup', component: UserComponent},
-  {path: 'cart', component: CartComponent},
+
 ];
 
 @NgModule({
