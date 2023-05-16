@@ -18,7 +18,7 @@ export class SearchbarProductsComponent {
   });
 
   categories$: Observable<string[]>;
-  dropDownOpen: boolean = false ;
+  dropDownOpen = false ;
 
   constructor(private productService: ProductService) {
   }

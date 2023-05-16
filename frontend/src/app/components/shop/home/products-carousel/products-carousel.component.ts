@@ -9,7 +9,7 @@ import {SlideInterface} from "./slide.interface";
 export class ProductsCarouselComponent implements OnInit, OnDestroy {
   @Input() slides: SlideInterface[] = [];
 
-  currentIndex: number = 0;
+  currentIndex = 0;
   timeoutId?: number;
 
   ngOnInit(): void {

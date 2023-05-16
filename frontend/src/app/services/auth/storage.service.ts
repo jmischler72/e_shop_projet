@@ -21,7 +21,7 @@ export class StorageService {
   public isJwtTokenValid(){
     const token = localStorage.getItem(JWTTOKEN);
 
-    if(!!token){
+    if(token){
       const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
       if ((Math.floor((new Date).getTime() / 1000)) >= expiry){
         this.removeJwtToken();
