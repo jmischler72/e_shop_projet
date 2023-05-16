@@ -23,6 +23,14 @@ export class SearchbarProductsComponent implements OnInit {
     this.loadCategories();
   }
 
+  get byName() {
+    return this.productFilter.get('byName');
+  }
+
+  get byCategory() {
+    return this.productFilter.get('byCategory');
+  }
+
   loadCategories() {
     this.categories$ = this.productService.getAllCategories();
   }

@@ -2,7 +2,8 @@
   <img
     [routerLink]="['']"
     class="nav-item logo hover:cursor-pointer"
-    src="../../../assets/eshop_logo.png" />
+    src="/assets/eshop_logo.png"
+    alt="Nintendo Eshop" />
 
   <div class="nav-item">
     <a
@@ -33,7 +34,7 @@
         <mat-icon>shopping_cart</mat-icon>
         <div class="detail">
           <h1>Panier</h1>
-          <div class="sub">{{ cartNumber }}</div>
+          <div class="sub">{{ cartService.products.length }}</div>
         </div>
       </div>
     </a>

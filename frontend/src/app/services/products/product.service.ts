@@ -21,6 +21,17 @@ export class ProductService {
     );
   }
 
+  getProductFromId(id: number) {
+    return this.http
+      .get<Product>(this.productsUrl + '/id/' + id)
+      .pipe(tap(res => console.log(res)));
+  }
+
+  getProductsByIds(productIds: number[]) {
+    const url = `${this.productsUrl + '/ids'}?ids=${productIds.join(',')}`;
+    return this.http.get<Product[]>(url);
+  }
+
   getAllCategories() {
     return this.http
       .get<string[]>(this.productsUrl + '/categories')

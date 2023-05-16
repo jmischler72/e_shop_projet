@@ -3,6 +3,7 @@ import { ProductService } from '../../../../services/products/product.service';
 import { Product } from '../../../../models/products/Product';
 import { delay, finalize, map, Observable } from 'rxjs';
 import { CartItem } from '../../../../models/products/CartItem';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products-table',
@@ -25,7 +26,7 @@ export class ProductsTableComponent implements OnInit {
   loadProducts() {
     this.isLoading = true;
     this.products$ = this.productService.getAllProducts().pipe(
-      delay(100000),
+      delay(1000),
       map(products => {
         products.forEach(product => {
           const index = this.searchProductInShoppingCart(product);

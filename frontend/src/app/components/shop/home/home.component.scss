@@ -4,9 +4,9 @@
   background-image: url("/assets/background.jpg");
   background-position: center;
   background-attachment: fixed;
-  height: 100vh;
 
-  app-products {
-    margin: 0 100px;
+  app-products-carousel{
+    height: 400px;
+    margin:10px;
   }
 }

@@ -31,9 +31,4 @@ export class CartService {
   saveCart(): void {
     localStorage.setItem(CART, JSON.stringify(this.products));
   }
-
-  getCartItemNumber() {
-    this.loadCart();
-    return this.products.length;
-  }
 }

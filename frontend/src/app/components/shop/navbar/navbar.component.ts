@@ -12,18 +12,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class NavbarComponent implements OnInit {
   user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
-  cartNumber: number;
 
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private cartService: CartService
+    public cartService: CartService
   ) {}
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.userService.getUserInfo().subscribe(user => this.user$.next(user));
     }
-
-    this.cartNumber = this.cartService.getCartItemNumber();
   }
 }

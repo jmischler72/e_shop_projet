@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.shoppingCart = this.cartService.loadCart();
+    this.shoppingCart = this.cartService.products;
   }
 
   addToCart(product: Product) {
