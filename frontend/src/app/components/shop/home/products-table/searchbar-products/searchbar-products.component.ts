@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from '../../../../../services/products/product.service';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -8,7 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './searchbar-products.component.html',
   styleUrls: ['./searchbar-products.component.scss'],
 })
-export class SearchbarProductsComponent {
+export class SearchbarProductsComponent implements OnInit {
   productFilter = new FormGroup({
     byName: new FormControl(''),
     byCategory: new FormControl(''),

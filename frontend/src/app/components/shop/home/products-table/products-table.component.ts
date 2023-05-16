@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductService } from '../../../../services/products/product.service';
 import { Product } from '../../../../models/products/Product';
 import { delay, finalize, map, Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import { CartItem } from '../../../../models/products/CartItem';
   templateUrl: './products-table.component.html',
   styleUrls: ['./products-table.component.scss'],
 })
-export class ProductsTableComponent {
+export class ProductsTableComponent implements OnInit {
   @Input() shoppingCart: CartItem[];
   @Output() productAdded = new EventEmitter<Product>();
 
@@ -26,8 +26,8 @@ export class ProductsTableComponent {
     this.isLoading = true;
     this.products$ = this.productService.getAllProducts().pipe(
       delay(100000),
-      map((products) => {
-        products.forEach((product) => {
+      map(products => {
+        products.forEach(product => {
           const index = this.searchProductInShoppingCart(product);
           if (index > -1) {
             product.quantity = this.shoppingCart[index].quantity;

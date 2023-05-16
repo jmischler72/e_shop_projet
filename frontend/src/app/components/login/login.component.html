@@ -4,41 +4,53 @@
   <div id="formContent">
     <!-- Icon -->
     <div class="fadeIn first">
-      <img ngSrc="../../../assets/eshop_logo.png" id="icon" alt="Eshop I" height="168" width="1000"/>
+      <img
+        ngSrc="../../../assets/eshop_logo.png"
+        id="icon"
+        alt="Eshop I"
+        height="168"
+        width="1000" />
     </div>
 
     <!-- Login Form -->
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <input type="text" id="email" class="fadeIn second" name="email" formControlName="email" placeholder="E-mail">
+      <input
+        type="text"
+        id="email"
+        class="fadeIn second"
+        name="email"
+        formControlName="email"
+        placeholder="E-mail" />
       <div *ngIf="email">
-        <div *ngIf="email.invalid && (email.dirty || email.touched)"
-             class="alert alert-danger">
-
-          <div *ngIf="email.errors?.['required']">
-            Name is required.
-          </div>
+        <div
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="alert alert-danger">
+          <div *ngIf="email.errors?.['required']">Name is required.</div>
           <div *ngIf="email.errors?.['minlength']">
             Name must be at least 4 characters long.
           </div>
-          <div *ngIf="email.errors?.['forbiddenName']">
-            Name cannot be Bob.
-          </div>
+          <div *ngIf="email.errors?.['forbiddenName']">Name cannot be Bob.</div>
         </div>
       </div>
-      <input type="password" id="password" class="fadeIn third" name="password" formControlName="password"
-             placeholder="Mot de passe">
-      <button type="submit" class="fadeIn fourth" >
-        <mat-spinner [diameter]="50" *ngIf="spinnerService.visibility | async; else connectText">
+      <input
+        type="password"
+        id="password"
+        class="fadeIn third"
+        name="password"
+        formControlName="password"
+        placeholder="Mot de passe" />
+      <button type="submit" class="fadeIn fourth">
+        <mat-spinner
+          [diameter]="50"
+          *ngIf="spinnerService.visibility | async; else connectText">
         </mat-spinner>
         <ng-template #connectText>
           <span>Se connecter</span>
         </ng-template>
       </button>
-
     </form>
     <div id="formFooter">
       <a class="underlineHover" [routerLink]="['/signup']">S'inscrire</a>
     </div>
   </div>
-
 </div>

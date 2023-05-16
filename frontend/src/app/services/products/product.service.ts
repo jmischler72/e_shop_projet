@@ -1,36 +1,29 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Product} from "../../models/products/Product";
-import {map, tap} from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { Product } from '../../models/products/Product';
+import { map, tap } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
-  private productsUrl = "/api/products";
+  private productsUrl = '/api/products';
 
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getAllProducts() {
-    return this.http.get<Product[]>(this.productsUrl)
-      .pipe(
-        tap(res=> console.log(res)),
-        map((products) => {
-          products.forEach( product => product.quantity = 0);
-          return products;
-        }),
-
-      )
+    return this.http.get<Product[]>(this.productsUrl).pipe(
+      tap(res => console.log(res)),
+      map(products => {
+        products.forEach(product => (product.quantity = 0));
+        return products;
+      })
+    );
   }
 
-  getAllCategories(){
-    return this.http.get<string[]>(this.productsUrl + "/categories")
-      .pipe(
-        tap(res=> console.log(res)),
-      )
+  getAllCategories() {
+    return this.http
+      .get<string[]>(this.productsUrl + '/categories')
+      .pipe(tap(res => console.log(res)));
   }
-
-
 }

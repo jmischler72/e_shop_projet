@@ -2,15 +2,13 @@
   <img
     [routerLink]="['']"
     class="nav-item logo hover:cursor-pointer"
-    src="../../../assets/eshop_logo.png"
-  />
+    src="../../../assets/eshop_logo.png" />
 
   <div class="nav-item">
     <a
       *ngIf="user$ | async as user; else noUser"
       [routerLink]="['/user']"
-      class="item"
-    >
+      class="item">
       <div class="group">
         <mat-icon>account_circle</mat-icon>
         <div class="detail">

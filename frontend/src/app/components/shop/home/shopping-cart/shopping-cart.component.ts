@@ -23,7 +23,7 @@ export class ShoppingCartComponent {
 
   onSubmit() {
     this.userService.addOrder(this.shoppingCart, this.userId).subscribe(
-      (data) => {
+      data => {
         console.log(data);
         if (data != undefined) {
           this.router.navigate(['/']);
@@ -32,7 +32,7 @@ export class ShoppingCartComponent {
           console.log('order not sent');
         }
       },
-      (error) => console.log(error)
+      error => console.log(error)
     );
   }
 }

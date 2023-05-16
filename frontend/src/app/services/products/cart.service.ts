@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import {Product} from "../../models/products/Product";
-import {CartItem} from "../../models/products/CartItem";
+import { CartItem } from '../../models/products/CartItem';
 
-const CART = 'cart';
+const CART = 'cart_items';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
   products: CartItem[] = [];
-  constructor() {}
 
   addToCart(addedProduct: any) {
     this.products.push(addedProduct);
@@ -26,17 +24,16 @@ export class CartService {
   }
 
   loadCart(): CartItem[] {
-    this.products = JSON.parse(localStorage.getItem('cart_items') as any) || [];
+    this.products = JSON.parse(localStorage.getItem(CART) as any) || [];
     return this.products;
   }
 
   saveCart(): void {
-    localStorage.setItem('cart_items', JSON.stringify(this.products));
+    localStorage.setItem(CART, JSON.stringify(this.products));
   }
 
-  getCartItemNumber(){
+  getCartItemNumber() {
     this.loadCart();
     return this.products.length;
   }
 }
-

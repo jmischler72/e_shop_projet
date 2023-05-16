@@ -1,14 +1,13 @@
 import { Alert, AlertType } from '../../../models/alert/alert';
 
 import {
-  Component,
-  OnInit,
-  OnDestroy,
-  Input,
   ChangeDetectorRef,
-  OnChanges,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../../../services/alert/alert.service';
 
@@ -35,14 +34,14 @@ export class AlertComponent implements OnInit, OnDestroy {
     // subscribe to new alert notifications
     this.alertSubscription = this.alertService
       .onAlert(this.id)
-      .subscribe((alert) => {
+      .subscribe(alert => {
         // clear alerts when an empty alert is received
         if (!alert.message) {
           // filter out alerts without 'keepAfterRouteChange' flag
-          this.alerts = this.alerts.filter((x) => x.keepAfterRouteChange);
+          this.alerts = this.alerts.filter(x => x.keepAfterRouteChange);
 
           // remove 'keepAfterRouteChange' flag on the rest
-          this.alerts.forEach((x) => delete x.keepAfterRouteChange);
+          this.alerts.forEach(x => delete x.keepAfterRouteChange);
           return;
         }
 
@@ -56,7 +55,7 @@ export class AlertComponent implements OnInit, OnDestroy {
       });
 
     // clear alerts on location change
-    this.routeSubscription = this.router.events.subscribe((event) => {
+    this.routeSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.alertService.clear(this.id);
       }
@@ -79,11 +78,11 @@ export class AlertComponent implements OnInit, OnDestroy {
 
       // remove alert after faded out
       setTimeout(() => {
-        this.alerts = this.alerts.filter((x) => x !== alert);
+        this.alerts = this.alerts.filter(x => x !== alert);
       }, 250);
     } else {
       // remove alert
-      this.alerts = this.alerts.filter((x) => x !== alert);
+      this.alerts = this.alerts.filter(x => x !== alert);
     }
   }
 

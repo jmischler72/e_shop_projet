@@ -1,15 +1,13 @@
 <form
   class="searchbar-products"
   [formGroup]="productFilter"
-  (ngSubmit)="submitProductFilter()"
->
+  (ngSubmit)="submitProductFilter()">
   <div class="param-search">
     <div class="name-search">
       <input
         placeholder="Rechercher par nom"
         type="text"
-        formControlName="byName"
-      />
+        formControlName="byName" />
       <mat-icon
         *ngIf="productFilter.get('byName')?.value"
         (click)="productFilter.get('byName')?.patchValue('')"
@@ -22,7 +20,7 @@
       <div (click)="dropDownOpen = true" class="category-search">
         <div class="text-button">
           <a *ngIf="productFilter.get('byCategory')?.value; else noCategory">
-            {{ productFilter.get("byCategory")?.value }}</a
+            {{ productFilter.get('byCategory')?.value }}</a
           >
           <ng-template #noCategory>
             <a class="text-gray-400">Par categorie</a>
@@ -34,12 +32,10 @@
       <div
         class="dropdown"
         [ngStyle]="{ display: dropDownOpen ? 'block' : 'none' }"
-        class="absolute z-100 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 overflow-auto dark:bg-gray-700"
-      >
+        class="absolute z-100 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 overflow-auto dark:bg-gray-700">
         <ul
           class="py-2 text-sm text-gray-700 dark:text-gray-200"
-          aria-labelledby="dropdownDefaultButton"
-        >
+          aria-labelledby="dropdownDefaultButton">
           <li>
             <a
               (click)="

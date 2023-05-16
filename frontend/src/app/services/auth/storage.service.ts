@@ -3,11 +3,9 @@ import { Injectable } from '@angular/core';
 const JWTTOKEN = 'jwtToken';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StorageService {
-  constructor() {}
-
   removeJwtToken(): void {
     localStorage.removeItem(JWTTOKEN);
   }
@@ -17,16 +15,15 @@ export class StorageService {
     localStorage.setItem(JWTTOKEN, jwt);
   }
 
-
-  public isJwtTokenValid(){
+  public isJwtTokenValid() {
     const token = localStorage.getItem(JWTTOKEN);
 
-    if(token){
-      const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
-      if ((Math.floor((new Date).getTime() / 1000)) >= expiry){
+    if (token) {
+      const expiry = JSON.parse(atob(token.split('.')[1])).exp;
+      if (Math.floor(new Date().getTime() / 1000) >= expiry) {
         this.removeJwtToken();
         return false;
-      }else{
+      } else {
         return true;
       }
     }

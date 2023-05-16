@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
   ) {}
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
-      this.userService.getUserInfo().subscribe((user) => this.user$.next(user));
+      this.userService.getUserInfo().subscribe(user => this.user$.next(user));
     }
 
     this.cartNumber = this.cartService.getCartItemNumber();

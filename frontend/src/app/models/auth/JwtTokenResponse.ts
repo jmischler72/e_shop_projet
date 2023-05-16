@@ -4,6 +4,6 @@ export class JwtTokenResponse {
     public email: string,
     public roles: string[],
     public accessToken: string,
-    public tokenType: string,
+    public tokenType: string
   ) {}
 }
