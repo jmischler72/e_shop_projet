@@ -1,4 +1,4 @@
 <div *ngFor="let alert of alerts" [ngClass]="cssClass(alert)">
-  <span> {{alert.message}}</span>
-  <button (click)="removeAlert(alert)"> <mat-icon>close</mat-icon></button>
+  <span> {{ alert.message }}</span>
+  <button (click)="removeAlert(alert)"><mat-icon>close</mat-icon></button>
 </div>

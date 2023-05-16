@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {Observable} from "rxjs";
-import {ProductService} from "../../../../../services/products/product.service";
-import {FormControl, FormGroup} from "@angular/forms";
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ProductService } from '../../../../../services/products/product.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-searchbar-products',
@@ -9,29 +9,25 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./searchbar-products.component.scss'],
 })
 export class SearchbarProductsComponent {
-
-
   productFilter = new FormGroup({
     byName: new FormControl(''),
     byCategory: new FormControl(''),
-    age: new FormControl('')
+    age: new FormControl(''),
   });
 
   categories$: Observable<string[]>;
-  dropDownOpen = false ;
+  dropDownOpen = false;
 
-  constructor(private productService: ProductService) {
-  }
+  constructor(private productService: ProductService) {}
   ngOnInit() {
-    this.loadCategories()
+    this.loadCategories();
   }
 
-  loadCategories(){
+  loadCategories() {
     this.categories$ = this.productService.getAllCategories();
   }
 
   submitProductFilter() {
     console.log(this.productFilter);
   }
-
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import {SlideInterface} from "./slide.interface";
+import { SlideInterface } from './slide.interface';
 
 @Component({
   selector: 'app-products-carousel',

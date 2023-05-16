@@ -1,13 +1,21 @@
 <nav>
-  <img [routerLink]="['']" class="nav-item logo hover:cursor-pointer" src="../../../assets/eshop_logo.png">
+  <img
+    [routerLink]="['']"
+    class="nav-item logo hover:cursor-pointer"
+    src="../../../assets/eshop_logo.png"
+  />
 
   <div class="nav-item">
-    <a *ngIf="user$|async as user; else noUser" [routerLink]="['/user']" class="item">
+    <a
+      *ngIf="user$ | async as user; else noUser"
+      [routerLink]="['/user']"
+      class="item"
+    >
       <div class="group">
         <mat-icon>account_circle</mat-icon>
         <div class="detail">
           <h1>Votre compte</h1>
-          <div class="sub">{{user.email}}</div>
+          <div class="sub">{{ user.email }}</div>
         </div>
       </div>
     </a>
@@ -27,7 +35,7 @@
         <mat-icon>shopping_cart</mat-icon>
         <div class="detail">
           <h1>Panier</h1>
-          <div class="sub">{{cartNumber}}</div>
+          <div class="sub">{{ cartNumber }}</div>
         </div>
       </div>
     </a>

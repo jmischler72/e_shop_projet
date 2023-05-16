@@ -9,7 +9,7 @@ nav {
   justify-content: space-between;
 }
 
-.nav-item{
+.nav-item {
   display: flex;
   flex-direction: row;
 }
@@ -34,14 +34,14 @@ nav {
   font-size: 0.9em;
   margin-right: 10px;
 
-  mat-icon{
+  mat-icon {
     color: gray;
   }
 
   .detail {
     margin: 5px;
 
-    .sub{
+    .sub {
       text-align: center;
       border-radius: 100px;
       background-color: #fc9403;
@@ -52,7 +52,8 @@ nav {
 }
 
 @media (max-width: 700px) {
-  .detail, .logo .text {
+  .detail,
+  .logo .text {
     display: none;
   }
 }

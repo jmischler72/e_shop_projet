@@ -1,18 +1,29 @@
-<form class="searchbar-products" [formGroup]="productFilter" (ngSubmit)="submitProductFilter()">
-
+<form
+  class="searchbar-products"
+  [formGroup]="productFilter"
+  (ngSubmit)="submitProductFilter()"
+>
   <div class="param-search">
     <div class="name-search">
-      <input placeholder="Rechercher par nom" type="text" formControlName="byName">
-      <mat-icon *ngIf="productFilter.get('byName')?.value" (click)="productFilter.get('byName')?.patchValue('')"
-                class="search-icon">close
+      <input
+        placeholder="Rechercher par nom"
+        type="text"
+        formControlName="byName"
+      />
+      <mat-icon
+        *ngIf="productFilter.get('byName')?.value"
+        (click)="productFilter.get('byName')?.patchValue('')"
+        class="search-icon"
+        >close
       </mat-icon>
     </div>
 
     <div (outsideClick)="dropDownOpen = false">
       <div (click)="dropDownOpen = true" class="category-search">
         <div class="text-button">
-          <a
-            *ngIf="productFilter.get('byCategory')?.value; else noCategory"> {{productFilter.get('byCategory')?.value}}</a>
+          <a *ngIf="productFilter.get('byCategory')?.value; else noCategory">
+            {{ productFilter.get("byCategory")?.value }}</a
+          >
           <ng-template #noCategory>
             <a class="text-gray-400">Par categorie</a>
           </ng-template>
@@ -20,17 +31,34 @@
         <mat-icon>arrow_drop_down</mat-icon>
       </div>
 
-      <div class="dropdown" [ngStyle]="{'display': dropDownOpen ? 'block': 'none'}"
-           class="absolute z-100 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 overflow-auto dark:bg-gray-700">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+      <div
+        class="dropdown"
+        [ngStyle]="{ display: dropDownOpen ? 'block' : 'none' }"
+        class="absolute z-100 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 overflow-auto dark:bg-gray-700"
+      >
+        <ul
+          class="py-2 text-sm text-gray-700 dark:text-gray-200"
+          aria-labelledby="dropdownDefaultButton"
+        >
           <li>
-            <a (click)="productFilter.get('byCategory')?.patchValue(null); dropDownOpen = false"
-               class="block px-4 py-2 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Aucune
-              categorie</a>
+            <a
+              (click)="
+                productFilter.get('byCategory')?.patchValue(null);
+                dropDownOpen = false
+              "
+              class="block px-4 py-2 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >Aucune categorie</a
+            >
           </li>
-          <li *ngFor="let category of categories$|async">
-            <a (click)="productFilter.get('byCategory')?.patchValue(category); dropDownOpen = false"
-               class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{category}}</a>
+          <li *ngFor="let category of categories$ | async">
+            <a
+              (click)="
+                productFilter.get('byCategory')?.patchValue(category);
+                dropDownOpen = false
+              "
+              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >{{ category }}</a
+            >
           </li>
         </ul>
       </div>
