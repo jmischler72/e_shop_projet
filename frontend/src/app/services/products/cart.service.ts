@@ -14,8 +14,8 @@ export class CartService {
     this.saveCart();
   }
 
-  removeFromCart(product: CartItem) {
-    const index = this.products.findIndex((x: CartItem) => x.id === product.id);
+  removeFromCart(product_id: number) {
+    const index = this.products.findIndex((x: CartItem) => x.id === product_id);
 
     if (index > -1) {
       this.products.splice(index, 1);

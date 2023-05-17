@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../services/products/cart.service';
 import { ProductService } from '../../../services/products/product.service';
-import { finalize, Observable } from 'rxjs';
+import { finalize, map, Observable } from 'rxjs';
 import { Product } from '../../../models/products/Product';
 
 @Component({
@@ -23,4 +23,18 @@ export class CartComponent implements OnInit {
       .getProductsByIds(productIds)
       .pipe(finalize(() => (this.isLoading = false)));
   }
+
+  removeProduct(product: Product) {
+    this.isLoading = true;
+    this.cartService.removeFromCart(product.id);
+
+    this.products$ = this.products$.pipe(
+      map((listeProduits: Product[]) =>
+        listeProduits.filter(p => p.id !== product.id)
+      ),
+      finalize(() => (this.isLoading = false))
+    );
+  }
+
+  protected readonly length = length;
 }

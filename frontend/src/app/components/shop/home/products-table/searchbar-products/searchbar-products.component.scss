@@ -75,8 +75,12 @@
 .submit-button {
   text-align: center;
   border-radius: 100px;
-  background-color: #fc9403;
+  background-color: gray;
   color: white;
   padding: 4px 10px;
   margin-left: 20px;
+
+  .value-changed{
+    background-color: #fc9403;
+  }
 }

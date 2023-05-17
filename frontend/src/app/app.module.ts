@@ -19,9 +19,15 @@ import { LoadingInterceptor } from './helpers/LoadingInterceptor';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { ShopModule } from './components/shop/shop.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, AlertComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    AlertComponent,
+    NotFoundComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

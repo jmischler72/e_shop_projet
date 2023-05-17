@@ -11,22 +11,22 @@
       </div>
       <div class="flex mt-10 mb-5">
         <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">
-          Product Details
+          Detail du produit
         </h3>
         <h3
-          class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">
-          Quantity
+          class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">
+          Quantité
         </h3>
         <h3
-          class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">
-          Price
+          class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">
+          Prix
         </h3>
         <h3
-          class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">
+          class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">
           Total
         </h3>
       </div>
-      <div *ngIf="products$ | async as products; else emptyState">
+      <div *ngIf="products$; else emptyState">
         <div
           *ngFor="let product of products$ | async"
           class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
@@ -39,7 +39,7 @@
               <span class="font-bold text-sm">{{ product.name }}</span>
               <span class="text-red-500 text-xs">{{ product.category }}</span>
               <a
-                href="#"
+                (click)="removeProduct(product)"
                 class="font-semibold hover:text-red-500 text-gray-500 text-xs"
                 >Remove</a
               >

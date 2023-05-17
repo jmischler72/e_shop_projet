@@ -1,0 +1,22 @@
+:host{
+  display: flex;
+  flex-direction: column;
+
+  .top-infos{
+    display: flex;
+    flex-direction: row;
+    padding: 20px 70px;
+
+    .image-slider{
+      width: 30%;
+      height:500px;
+      background-color: lightgray;
+
+    }
+  }
+
+  .description{
+    margin: 20px;
+    font-size: 12px;
+  }
+}

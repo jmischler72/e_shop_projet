@@ -37,13 +37,14 @@ export class SearchbarProductsComponent implements OnInit {
   }
 
   submitProductFilter() {
-    if (this.productFilter.valid) {
+    if (this.productFilter.valid && this.productFilter.dirty) {
       Object.keys(this.productFilter.controls).forEach(key => {
         if (this.productFilter.get(key)?.value === '') {
           this.productFilter.get(key)?.patchValue(null);
         }
       });
       this.filters.emit(this.productFilter);
+      this.productFilter.markAsPristine();
     }
   }
 }

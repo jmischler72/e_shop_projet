@@ -10,7 +10,7 @@
         formControlName="byName" />
       <mat-icon
         *ngIf="byName?.value"
-        (click)="byName?.patchValue('')"
+        (click)="byName?.patchValue(''); productFilter.markAsDirty()"
         class="search-icon"
         >close
       </mat-icon>
@@ -37,14 +37,22 @@
           aria-labelledby="dropdownDefaultButton">
           <li>
             <a
-              (click)="byCategory?.patchValue(null); dropDownOpen = false"
+              (click)="
+                byCategory?.patchValue(null);
+                dropDownOpen = false;
+                productFilter.markAsDirty()
+              "
               class="block px-4 py-2 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >Aucune categorie</a
             >
           </li>
           <li *ngFor="let category of categories$ | async">
             <a
-              (click)="byCategory?.patchValue(category); dropDownOpen = false"
+              (click)="
+                byCategory?.patchValue(category);
+                dropDownOpen = false;
+                productFilter.markAsDirty()
+              "
               class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >{{ category }}</a
             >
@@ -54,5 +62,12 @@
     </div>
   </div>
 
-  <button class="submit-button" type="submit">Rechercher</button>
+  <button
+    class="submit-button"
+    [ngStyle]="{
+      'background-color': productFilter.dirty ? '#fc9403' : '#d4d4d4'
+    }"
+    type="submit">
+    Rechercher
+  </button>
 </form>
