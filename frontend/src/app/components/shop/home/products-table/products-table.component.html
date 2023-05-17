@@ -9,7 +9,9 @@
   </div>
 
   <div class="searchbar">
-    <app-searchbar-products class="searchbar"></app-searchbar-products>
+    <app-searchbar-products
+      class="searchbar"
+      (filters)="filterProducts($event)"></app-searchbar-products>
   </div>
 
   <div *ngIf="products$ | async as products; else emptyState">

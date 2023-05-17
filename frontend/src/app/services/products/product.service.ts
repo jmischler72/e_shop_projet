@@ -21,10 +21,15 @@ export class ProductService {
     );
   }
 
-  getProductFromId(id: number) {
-    return this.http
-      .get<Product>(this.productsUrl + '/id/' + id)
-      .pipe(tap(res => console.log(res)));
+  getFilteredProducts(
+    data: Partial<{ byName: string | null; byCategory: string | null }>
+  ) {
+    return this.http.post<Product[]>(this.productsUrl + '/filter', data).pipe(
+      map(products => {
+        products.forEach(product => (product.quantity = 0));
+        return products;
+      })
+    );
   }
 
   getProductsByIds(productIds: number[]) {

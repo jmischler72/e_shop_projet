@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from '../../../../../services/products/product.service';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -12,8 +12,9 @@ export class SearchbarProductsComponent implements OnInit {
   productFilter = new FormGroup({
     byName: new FormControl(''),
     byCategory: new FormControl(''),
-    age: new FormControl(''),
   });
+
+  @Output() filters: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   categories$: Observable<string[]>;
   dropDownOpen = false;
@@ -36,6 +37,13 @@ export class SearchbarProductsComponent implements OnInit {
   }
 
   submitProductFilter() {
-    console.log(this.productFilter);
+    if (this.productFilter.valid) {
+      Object.keys(this.productFilter.controls).forEach(key => {
+        if (this.productFilter.get(key)?.value === '') {
+          this.productFilter.get(key)?.patchValue(null);
+        }
+      });
+      this.filters.emit(this.productFilter);
+    }
   }
 }

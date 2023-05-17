@@ -4,6 +4,7 @@ import { Product } from '../../../../models/products/Product';
 import { delay, finalize, map, Observable } from 'rxjs';
 import { CartItem } from '../../../../models/products/CartItem';
 import { tap } from 'rxjs/operators';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-products-table',
@@ -26,7 +27,6 @@ export class ProductsTableComponent implements OnInit {
   loadProducts() {
     this.isLoading = true;
     this.products$ = this.productService.getAllProducts().pipe(
-      delay(1000),
       map(products => {
         products.forEach(product => {
           const index = this.searchProductInShoppingCart(product);
@@ -50,5 +50,23 @@ export class ProductsTableComponent implements OnInit {
 
   addToCart(product: Product) {
     this.productAdded.emit(product);
+  }
+
+  filterProducts(filters: FormGroup) {
+    this.isLoading = true;
+    this.products$ = this.productService
+      .getFilteredProducts(filters.value)
+      .pipe(
+        map(products => {
+          products.forEach(product => {
+            const index = this.searchProductInShoppingCart(product);
+            if (index > -1) {
+              product.quantity = this.shoppingCart[index].quantity;
+            }
+          });
+          return products;
+        }),
+        finalize(() => (this.isLoading = false))
+      );
   }
 }

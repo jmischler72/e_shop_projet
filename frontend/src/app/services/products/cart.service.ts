@@ -9,13 +9,13 @@ const CART = 'cart_items';
 export class CartService {
   products: CartItem[] = [];
 
-  addToCart(addedProduct: any) {
+  addToCart(addedProduct: CartItem) {
     this.products.push(addedProduct);
     this.saveCart();
   }
 
-  removeFromCart(product: any) {
-    const index = this.products.findIndex((x: any) => x.id === product.id);
+  removeFromCart(product: CartItem) {
+    const index = this.products.findIndex((x: CartItem) => x.id === product.id);
 
     if (index > -1) {
       this.products.splice(index, 1);
