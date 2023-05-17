@@ -6,4 +6,6 @@ public enum ECategory {
     Course,
     Action,
 
+    Strategie
+
 }

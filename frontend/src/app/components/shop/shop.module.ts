@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
 import { ShopRoutingModule } from './shop-routing.module';
 import { OutsideClickDirective } from './home/products-table/searchbar-products/outside-click.directive';
 import { ShoppingCartComponent } from './home/shopping-cart/shopping-cart.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ShoppingCartComponent } from './home/shopping-cart/shopping-cart.compon
     SearchbarProductsComponent,
     OutsideClickDirective,
     ShoppingCartComponent,
+    FooterComponent,
   ],
   imports: [
     RouterModule,

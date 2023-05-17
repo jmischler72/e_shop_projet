@@ -1,0 +1,32 @@
+
+.logo-container{
+  width: 100%;
+  padding: 20px;
+  background-color: #ff9d00;
+  .logo{
+    width: 150px;
+  }
+}
+
+.links-container{
+  display: flex;
+  flex-direction: column;
+  background-color: #ff7700;
+  min-height: 100px;
+  color: white;
+  padding: 20px 50px;
+
+  .links{
+    margin-bottom: 15px;
+    justify-content: space-evenly;
+    display: flex;
+    font-size: 15px;
+    a{
+      margin-right: 30px;
+    }
+  }
+  span{
+    font-style: italic;
+  }
+
+}

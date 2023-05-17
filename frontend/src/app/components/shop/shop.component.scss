@@ -1,6 +1,18 @@
+:host{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 .navbar {
-  position: relative;
+  position: fixed;
+  width: 100%;
   z-index: 10;
 }
+
+.component{
+  padding-top: 75px;
+}
+
+
 
 
