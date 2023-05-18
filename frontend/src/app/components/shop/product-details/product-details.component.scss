@@ -4,19 +4,52 @@
 
   .top-infos{
     display: flex;
+    justify-content: center;
     flex-direction: row;
     padding: 20px 70px;
+    height:700px;
 
     .image-slider{
       width: 30%;
-      height:500px;
       background-color: lightgray;
+      margin-right: 30px;
 
+    }
+
+    .product-infos{
+      display: flex;
+      flex-direction: column;
+      width: 40%;
+      background-color: lightgray;
+      padding: 100px;
+      border-radius: 10px;
+      justify-content: space-between;
+
+      .infos-text{
+        .product-name{
+          background-color: gray;
+          height: 50px;
+          margin-bottom: 20px;
+        }
+
+        .product-price{
+          background-color: gray;
+          height: 50px;
+          width: 40%;
+        }
+      }
+
+
+      .product-buttons{
+        background-color: gray;
+        height: 130px;
+      }
     }
   }
 
   .description{
     margin: 20px;
-    font-size: 12px;
+    padding: 30px 70px;
+    font-size: 17px;
   }
 }
