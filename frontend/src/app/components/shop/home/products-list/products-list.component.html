@@ -1,0 +1,33 @@
+<div
+  class="relative overflow-x-auto shadow-md sm:rounded-lg border border-gray-300 mx-10 my-5 products-container">
+  <div
+    class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+    <h1>Naviguer les jeux</h1>
+    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+      Rechercher parmis les nombreux jeux disponibles dans le e-shop !
+    </p>
+  </div>
+
+  <div class="searchbar">
+    <app-searchbar-products
+      class="searchbar"
+      (filters)="filterProducts($event)"></app-searchbar-products>
+  </div>
+
+  <ng-container *ngIf="products$ | async as products">
+    <ng-container *ngIf="products.value">
+      <app-products-table
+        *ngIf="products.value.length; else emptyState"
+        [products]="products.value"
+        (productAdded)="productAdded.emit($event)"></app-products-table>
+      <ng-template #emptyState>
+        <div class="content-table">
+          <h1>Aucun produit n'a été trouvé</h1>
+        </div>
+      </ng-template>
+    </ng-container>
+    <div *ngIf="products?.isLoading" class="content-table">
+      <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+  </ng-container>
+</div>

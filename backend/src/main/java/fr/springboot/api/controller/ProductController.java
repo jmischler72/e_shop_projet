@@ -85,10 +85,6 @@ public class ProductController {
         products = productRepository.findFilteredProducts(filters.getByName(), filters.getByCategory());
 
 
-        if (products.isEmpty()) {
-            return new ResponseEntity<>("No product found", HttpStatus.NOT_FOUND);
-        }
-
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 //

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../models/products/Product';
-import { map, tap } from 'rxjs';
+import { delay, map, Observable, of, startWith, tap } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { HttpRequestState } from '../HttpRequestState';
 
 @Injectable({
   providedIn: 'root',
@@ -11,25 +13,45 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getAllProducts() {
-    return this.http.get<Product[]>(this.productsUrl).pipe(
-      tap(res => console.log(res)),
-      map(products => {
-        products.forEach(product => (product.quantity = 0));
-        return products;
-      })
+  applyHttpRequestState(
+    observable: Observable<any>
+  ): Observable<HttpRequestState<Product[]>> {
+    return observable.pipe(
+      map(value => ({ isLoading: false, value })),
+      catchError(error => of({ isLoading: false, error })),
+      startWith({ isLoading: true })
     );
+  }
+
+  getAllProducts(): Observable<HttpRequestState<Product[]>> {
+    const products$: Observable<Product[]> = this.http
+      .get<Product[]>(this.productsUrl)
+      .pipe(
+        delay(1000),
+        map(products => {
+          products.forEach(product => (product.quantity = 0));
+          return products;
+        })
+      );
+    return this.applyHttpRequestState(products$);
   }
 
   getFilteredProducts(
     data: Partial<{ byName: string | null; byCategory: string | null }>
-  ) {
-    return this.http.post<Product[]>(this.productsUrl + '/filter', data).pipe(
-      map(products => {
-        products.forEach(product => (product.quantity = 0));
-        return products;
-      })
-    );
+  ): Observable<HttpRequestState<Product[]>> {
+    const products$: Observable<Product[]> = this.http
+      .post<Product[]>(this.productsUrl + '/filter', data)
+      .pipe(
+        map(products => {
+          products.forEach(product => (product.quantity = 0));
+          return products;
+        })
+      );
+    return this.applyHttpRequestState(products$);
+  }
+
+  getProductById(productId: number) {
+    return this.http.get<Product[]>(this.productsUrl + '/id' + productId);
   }
 
   getProductsByIds(productIds: number[]) {
