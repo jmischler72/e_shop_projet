@@ -3,6 +3,7 @@ import { finalize, map, Observable, Subscription } from 'rxjs';
 import { ProductService } from '../../../services/products/product.service';
 import { Product } from '../../../models/products/Product';
 import { ActivatedRoute } from '@angular/router';
+import { HttpRequestState } from '../../../services/HttpRequestState';
 
 @Component({
   selector: 'app-product-details',
@@ -11,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductDetailsComponent {
   private routeSub: Subscription;
-  product$: Observable<Product>;
+  product$: Observable<HttpRequestState<Product>>;
   isLoading: boolean;
 
   constructor(
@@ -26,9 +27,7 @@ export class ProductDetailsComponent {
     this.isLoading = true;
     this.routeSub = this.route.params.subscribe(params => {
       console.log(params['id']);
-      // this.product$ = this.productService
-      //   .getProductById(params['id'])
-      //   .pipe(finalize(() => (this.isLoading = false)));
+      this.product$ = this.productService.getProductById(params['id']);
     });
   }
 }

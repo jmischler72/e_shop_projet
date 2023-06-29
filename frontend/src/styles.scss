@@ -4,8 +4,49 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+$color-primary: (
+  50:#fff8e1,
+  100:#ffebb2,
+  200:#ffde81,
+  300:#ffd34e,
+  400:#ffc826,
+  500:#ffbe03,
+  600:#ffb000,
+  700:ff9d00,
+  800:#ff8c01,
+  900:#ff6c03,
+  A100: #f5f5f5,
+  A200: #eaeaeb,
+  A400: #d6d6d7,
+  A700: #838386,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: white,
+  )
+);
+
 
 .mat-mdc-progress-spinner circle {
   stroke: #fc9403;

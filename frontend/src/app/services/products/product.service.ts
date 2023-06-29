@@ -15,7 +15,7 @@ export class ProductService {
 
   applyHttpRequestState(
     observable: Observable<any>
-  ): Observable<HttpRequestState<Product[]>> {
+  ): Observable<HttpRequestState<any>> {
     return observable.pipe(
       map(value => ({ isLoading: false, value })),
       catchError(error => of({ isLoading: false, error })),
@@ -51,7 +51,10 @@ export class ProductService {
   }
 
   getProductById(productId: number) {
-    return this.http.get<Product[]>(this.productsUrl + '/id' + productId);
+    const product$: Observable<Product> = this.http.get<Product>(
+      this.productsUrl + '/id/' + productId
+    );
+    return this.applyHttpRequestState(product$);
   }
 
   getProductsByIds(productIds: number[]) {

@@ -39,6 +39,8 @@ nav {
   }
 
   .detail {
+    display: flex;
+    flex-direction: column;
     margin: 5px;
 
     .sub {
@@ -52,8 +54,7 @@ nav {
 }
 
 @media (max-width: 700px) {
-  .detail,
-  .logo .text {
-    display: none;
+  .detail{
+    display: none !important;
   }
 }
