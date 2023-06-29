@@ -80,4 +80,12 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/jmischler72/e_shop_projet</url>
+		</repository>
+	</distributionManagement>
+
 </project>
