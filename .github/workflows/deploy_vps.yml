@@ -12,7 +12,7 @@ on:
   pull_request:
     paths: 
     - 'backend/**'
-    branches: [ "release" ]
+    branches: [ "master" ]
 
 jobs:
   build-and-push-image:
