@@ -27,7 +27,6 @@ public class OrderController {
     OrderItemRepository orderItemRepository;
     @Autowired
     ProductRepository productRepository;
-
     @PostMapping("/create")
     public ResponseEntity<?> createOrder(@RequestBody List<OrderItemDto> shoppingCart, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         Optional<User> user = userRepository.findByEmail(userDetails.getUsername());
