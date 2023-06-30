@@ -14,6 +14,10 @@ on:
     - 'backend/**'
     branches: [ "master" ]
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
