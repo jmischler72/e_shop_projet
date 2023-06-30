@@ -56,7 +56,6 @@ public class OrderController {
             orderItems.add(orderItem);
         }
 
-
         order.setDateCreated(LocalDate.now());
         order.setUserId(user.get().getId());
         order.setProducts(orderItems);
