@@ -72,7 +72,7 @@ jobs:
         run: |
           ssh deployer@${{ secrets.SSH_HOST }} 'echo "${{ needs.outputs.docker_tags }}" > ~/.env'
           curl -L https://raw.githubusercontent.com/jmischler72/e_shop_projet/master/backend/docker-compose.yml --output docker-compose.yml
-          ssh deployer@${{ secrets.SSH_HOST }} "docker-compose pull  && docker-compose up -d"
+          ssh deployer@${{ secrets.SSH_HOST }} "docker compose pull  && docker-compose up -d"
       - name: Cleanup
         run: rm -rf ~/.ssh
 
