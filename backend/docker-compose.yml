@@ -1,7 +1,8 @@
 version: "3.7"
 services:
   api_service:
-    build: "ghcr.io/jmischler72/e_shop_projet:${TAG}"
+    # build: "ghcr.io/jmischler72/e_shop_projet:${TAG}"
+    build: "ghcr.io/jmischler72/e_shop_projet:master"
     restart: always
     ports:
       - 8080:8080
