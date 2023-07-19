@@ -22,6 +22,7 @@ import { ShoppingCartComponent } from './home/shopping-cart/shopping-cart.compon
 import { FooterComponent } from './footer/footer.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductsTableComponent } from './home/products-list/products-table/products-table.component';
+import { QuantitySelectorComponent } from '../reusable/quantity-selector/quantity-selector.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ProductsTableComponent } from './home/products-list/products-table/prod
     FooterComponent,
     ProductDetailsComponent,
     ProductsTableComponent,
+    QuantitySelectorComponent,
   ],
   imports: [
     RouterModule,

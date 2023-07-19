@@ -13,7 +13,10 @@ import { SlideInterface } from './products-carousel/slide.interface';
 })
 export class HomeComponent implements OnInit {
   shoppingCart: CartItem[] = [];
-  slides: SlideInterface[] = [{ url: '/assets/image-1.jpeg', title: 'beach' }];
+  slides: SlideInterface[] = [
+    { url: '/assets/image-1.jpeg', title: 'beach' },
+    { url: '/assets/eshop_logo.png', title: 'beach' },
+  ];
 
   constructor(
     private authService: AuthService,

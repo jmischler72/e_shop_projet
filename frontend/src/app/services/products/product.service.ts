@@ -4,6 +4,7 @@ import { Product } from '../../models/products/Product';
 import { delay, map, Observable, of, startWith, tap } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpRequestState } from '../HttpRequestState';
+import { CartItem } from '../../models/products/CartItem';
 
 @Injectable({
   providedIn: 'root',
@@ -60,6 +61,29 @@ export class ProductService {
   getProductsByIds(productIds: number[]) {
     const url = `${this.productsUrl + '/ids'}?ids=${productIds.join(',')}`;
     return this.http.get<Product[]>(url);
+  }
+
+  getProductsWithCartItem(products: CartItem[]) {
+    const productIds = products.map(product => product.id);
+    const productQuantities = products.map(product => [
+      product.id,
+      product.quantity,
+    ]);
+
+    const url = `${this.productsUrl + '/ids'}?ids=${productIds.join(',')}`;
+
+    const products$: Observable<Product[]> = this.http.get<Product[]>(url).pipe(
+      map(products => {
+        products.forEach(product => {
+          product.quantity = productQuantities.filter(
+            pq => pq[0] == product.id
+          )[0][1];
+        });
+        return products;
+      })
+    );
+
+    return products$;
   }
 
   getAllCategories() {

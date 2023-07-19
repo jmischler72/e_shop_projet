@@ -17,10 +17,9 @@ export class CartComponent implements OnInit {
     private productService: ProductService
   ) {}
   ngOnInit() {
-    const productIds = this.cartService.products.map(product => product.id);
     this.isLoading = true;
     this.products$ = this.productService
-      .getProductsByIds(productIds)
+      .getProductsWithCartItem(this.cartService.products)
       .pipe(finalize(() => (this.isLoading = false)));
   }
 
@@ -28,13 +27,11 @@ export class CartComponent implements OnInit {
     this.isLoading = true;
     this.cartService.removeFromCart(product.id);
 
-    this.products$ = this.products$.pipe(
-      map((listeProduits: Product[]) =>
-        listeProduits.filter(p => p.id !== product.id)
-      ),
+    this.products$.pipe(
+      map((products: Product[] | void) => {
+        if (products) products.filter(p => p.id !== product.id);
+      }),
       finalize(() => (this.isLoading = false))
     );
   }
-
-  protected readonly length = length;
 }

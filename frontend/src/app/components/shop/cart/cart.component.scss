@@ -4,3 +4,26 @@
 #summary {
   background-color: #f6f6f6;
 }
+
+.return{
+  float: left;
+  &:hover{
+    color: white;
+    background-color: #fb923c;
+
+    svg{
+      color: white;
+    }
+  }
+}
+
+.content-table {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0;
+  h1 {
+    font-size: 20px;
+    color: #616161;
+    border-bottom: 2px solid orange;
+  }
+}

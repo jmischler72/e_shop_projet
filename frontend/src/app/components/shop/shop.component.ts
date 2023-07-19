@@ -9,6 +9,6 @@ import { CartService } from '../../services/products/cart.service';
 export class ShopComponent implements OnInit {
   constructor(private cartService: CartService) {}
   ngOnInit() {
-    this.cartService.loadCart();
+    this.cartService.loadCartFromLocalStorage();
   }
 }

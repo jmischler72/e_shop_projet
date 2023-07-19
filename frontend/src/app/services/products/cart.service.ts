@@ -10,8 +10,17 @@ export class CartService {
   products: CartItem[] = [];
 
   addToCart(addedProduct: CartItem) {
-    this.products.push(addedProduct);
-    this.saveCart();
+    const index = this.products.findIndex(
+      (x: CartItem) => x.id === addedProduct.id
+    );
+
+    if (index != -1) {
+      this.products[index].quantity = addedProduct.quantity;
+    } else {
+      this.products.push(addedProduct);
+    }
+
+    this.saveCartToLocalStorage();
   }
 
   removeFromCart(product_id: number) {
@@ -19,16 +28,16 @@ export class CartService {
 
     if (index > -1) {
       this.products.splice(index, 1);
-      this.saveCart();
+      this.saveCartToLocalStorage();
     }
   }
 
-  loadCart(): CartItem[] {
+  loadCartFromLocalStorage(): CartItem[] {
     this.products = JSON.parse(localStorage.getItem(CART) as any) || [];
     return this.products;
   }
 
-  saveCart(): void {
+  saveCartToLocalStorage(): void {
     localStorage.setItem(CART, JSON.stringify(this.products));
   }
 }
