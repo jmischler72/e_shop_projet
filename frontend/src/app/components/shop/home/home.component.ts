@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
   shoppingCart: CartItem[] = [];
   slides: SlideInterface[] = [
     { url: '/assets/image-1.jpeg', title: 'beach' },
+    { url: '/assets/Sans titre.jpg', title: 'beach' },
+    { url: '/assets/2.jpg', title: 'beach' },
     { url: '/assets/eshop_logo.png', title: 'beach' },
   ];
 

@@ -3,82 +3,41 @@ import { SlideInterface } from './slide.interface';
 import {
   animate,
   animation,
-  group,
-  query,
   style,
   transition,
   trigger,
   useAnimation,
 } from '@angular/animations';
 
-const left = [
-  query(':enter, :leave', style({ position: 'fixed', width: '200px' }), {
-    optional: true,
-  }),
-  group([
-    query(
-      ':enter',
-      [
-        style({ transform: 'translateX(-200px)' }),
-        animate('.3s ease-out', style({ transform: 'translateX(0%)' })),
-      ],
-      {
-        optional: true,
-      }
-    ),
-    query(
-      ':leave',
-      [
-        style({ transform: 'translateX(0%)' }),
-        animate('.3s ease-out', style({ transform: 'translateX(200px)' })),
-      ],
-      {
-        optional: true,
-      }
-    ),
-  ]),
-];
+const fromLeftToCenter = animation([
+  style({ transform: 'translateX(-100%)' }), // start state
+  animate(
+    '{{time}} cubic-bezier(0.785, 0.135, 0.15, 0.86)',
+    style({ transform: 'translateX(0%)' })
+  ),
+]);
 
-const right = [
-  query(':enter, :leave', style({ position: 'fixed', width: '200px' }), {
-    optional: true,
-  }),
-  group([
-    query(
-      ':enter',
-      [
-        style({ transform: 'translateX(200px)' }),
-        animate('.3s ease-out', style({ transform: 'translateX(0%)' })),
-      ],
-      {
-        optional: true,
-      }
-    ),
-    query(
-      ':leave',
-      [
-        style({ transform: 'translateX(0%)' }),
-        animate('.3s ease-out', style({ transform: 'translateX(-200px)' })),
-      ],
-      {
-        optional: true,
-      }
-    ),
-  ]),
-];
-
-const scaleIn = animation([
-  style({ opacity: 0, transform: 'translateX(0%)' }), // start state
+const fromCenterToRight = animation([
+  style({ transform: 'translateX(0%)' }), // start state
   animate(
     '{{time}} cubic-bezier(0.785, 0.135, 0.15, 0.86)',
     style({ opacity: 1, transform: 'translateX(100%)' })
   ),
 ]);
 
-const scaleOut = animation([
+const fromCenterToLeft = animation([
+  style({ transform: 'translateX(0%)' }), // start state
   animate(
     '{{time}} cubic-bezier(0.785, 0.135, 0.15, 0.86)',
-    style({ opacity: 0, transform: 'translateX(0%)' })
+    style({ opacity: 1, transform: 'translateX(-100%)' })
+  ),
+]);
+
+const fromRightToCenter = animation([
+  style({ transform: 'translateX(100%)' }), // start state
+  animate(
+    '{{time}} cubic-bezier(0.785, 0.135, 0.15, 0.86)',
+    style({ opacity: 1, transform: 'translateX(0%)' })
   ),
 ]);
 
@@ -88,13 +47,12 @@ const scaleOut = animation([
   styleUrls: ['./products-carousel.component.scss'],
   animations: [
     trigger('animImageSlider', [
-      transition('void => scale', [
-        useAnimation(scaleIn, { params: { time: '500ms' } }),
+      transition('slide => void', [
+        useAnimation(fromCenterToLeft, { params: { time: '500ms' } }),
       ]),
-      transition('scale => void', [
-        useAnimation(scaleOut, { params: { time: '500ms' } }),
+      transition('void => slide', [
+        useAnimation(fromLeftToCenter, { params: { time: '500ms' } }),
       ]),
-      transition(':decrement', left),
     ]),
   ],
 })
@@ -117,15 +75,19 @@ export class ProductsCarouselComponent implements OnInit, OnDestroy {
     this.timeoutId = window.setTimeout(() => this.goToNext(), 6000);
   }
 
+  mod(a: number, n: number) {
+    return a - n * Math.floor(a / n);
+  }
   goToPrevious(): void {
-    const newIndex = (this.currentIndex - 1) % this.slides.length;
+    const newIndex = this.mod(this.currentIndex - 1, this.slides.length);
+    console.log(newIndex);
 
     this.resetTimer();
     this.currentIndex = newIndex;
   }
 
   goToNext(): void {
-    const newIndex = (this.currentIndex + 1) % this.slides.length;
+    const newIndex = this.mod(this.currentIndex + 1, this.slides.length);
 
     this.resetTimer();
     this.currentIndex = newIndex;
