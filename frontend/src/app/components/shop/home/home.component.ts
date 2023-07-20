@@ -13,11 +13,12 @@ import { SlideInterface } from './products-carousel/slide.interface';
 })
 export class HomeComponent implements OnInit {
   shoppingCart: CartItem[] = [];
+  /* slides must be 1840x400 */
   slides: SlideInterface[] = [
-    { url: '/assets/image-1.jpeg', title: 'beach' },
-    { url: '/assets/Sans titre.jpg', title: 'beach' },
-    { url: '/assets/2.jpg', title: 'beach' },
-    { url: '/assets/eshop_logo.png', title: 'beach' },
+    { url: '/assets/default_banner.png', title: 'eshop' },
+    { url: '/assets/default_banner.png', title: 'eshop' },
+    { url: '/assets/default_banner.png', title: 'eshop' },
+    { url: '/assets/default_banner.png', title: 'eshop' },
   ];
 
   constructor(

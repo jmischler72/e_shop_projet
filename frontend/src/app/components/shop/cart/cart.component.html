@@ -1,4 +1,4 @@
-<div class="container mx-auto mt-10 bg-gray-100">
+<div class="container mx-auto mt-10 mb-10 bg-gray-100">
   <div class="flex shadow-md my-10">
     <div
       class="w-3/4 bg-white px-10 py-10 sm:rounded-lg border border-gray-300">
@@ -26,6 +26,9 @@
           class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">
           Total
         </h3>
+      </div>
+      <div *ngIf="isLoading" class="content-table">
+        <mat-spinner [diameter]="50"></mat-spinner>
       </div>
       <div *ngIf="products$; else emptyState">
         <div
@@ -55,14 +58,9 @@
         </div>
       </div>
       <ng-template #emptyState>
-        <div *ngIf="isLoading; else noProduct" class="content-table">
-          <mat-spinner [diameter]="50"></mat-spinner>
+        <div class="content-table">
+          <h1>Aucun produit dans votre panier</h1>
         </div>
-        <ng-template #noProduct>
-          <div class="content-table">
-            <h1>Aucun produit n'a été trouvé</h1>
-          </div>
-        </ng-template>
       </ng-template>
 
       <a
@@ -79,10 +77,16 @@
     </div>
 
     <div id="summary" class="w-1/4 px-8 py-10">
-      <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
+      <h1 class="font-semibold text-2xl border-b pb-8">Resumé de l'achat</h1>
       <div class="flex justify-between mt-10 mb-5">
-        <span class="font-semibold text-sm uppercase">Items 3</span>
-        <span class="font-semibold text-sm">590$</span>
+        <span class="font-semibold text-sm uppercase"
+          >{{ cartService.products.length }} article{{
+            cartService.products.length > 1 ? 's' : ''
+          }}</span
+        >
+        <span class="font-semibold text-sm">{{
+          totalPrice | currency : 'EUR'
+        }}</span>
       </div>
       <div>
         <label class="font-medium inline-block mb-3 text-sm uppercase"

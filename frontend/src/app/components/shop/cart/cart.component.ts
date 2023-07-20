@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../services/products/cart.service';
 import { ProductService } from '../../../services/products/product.service';
-import { finalize, map, Observable } from 'rxjs';
+import { finalize, map, Observable, Subject, tap } from 'rxjs';
 import { Product } from '../../../models/products/Product';
 
 @Component({
@@ -11,27 +11,35 @@ import { Product } from '../../../models/products/Product';
 })
 export class CartComponent implements OnInit {
   products$: Observable<Product[]>;
+  productsSubject$: Subject<Product[]> = new Subject<Product[]>();
+  totalPrice = 0;
   isLoading: boolean;
   constructor(
     public cartService: CartService,
     private productService: ProductService
   ) {}
   ngOnInit() {
-    this.isLoading = true;
-    this.products$ = this.productService
-      .getProductsWithCartItem(this.cartService.products)
-      .pipe(finalize(() => (this.isLoading = false)));
+    if (this.cartService.products.length > 0) {
+      this.isLoading = true;
+
+      this.products$ = this.productService
+        .getProductsWithCartItem(this.cartService.products)
+        .pipe(
+          tap(products => {
+            products.forEach(product => (this.totalPrice += product.price));
+          })
+        )
+        .pipe(finalize(() => (this.isLoading = false)));
+    }
   }
 
   removeProduct(product: Product) {
-    this.isLoading = true;
     this.cartService.removeFromCart(product.id);
 
     this.products$.pipe(
-      map((products: Product[] | void) => {
-        if (products) products.filter(p => p.id !== product.id);
-      }),
-      finalize(() => (this.isLoading = false))
+      map((products: Product[]) => {
+        return products.filter(p => p.id !== product.id);
+      })
     );
   }
 }

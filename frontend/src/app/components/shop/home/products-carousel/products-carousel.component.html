@@ -8,7 +8,7 @@
       <img
         *ngIf="i === currentIndex"
         [src]="slide.url"
-        [@animImageSlider]="'slide'"
+        [@animImageSlider]="currentAnimation"
         alt="Carousel banner"
         class="slide" />
     </ng-container>
@@ -17,6 +17,9 @@
     <div
       *ngFor="let slide of slides; let slideIndex = index"
       class="dot"
+      [ngStyle]="
+        slideIndex === currentIndex ? { color: 'black' } : { color: 'orange' }
+      "
       (click)="goToSlide(slideIndex)">
       ●
     </div>
