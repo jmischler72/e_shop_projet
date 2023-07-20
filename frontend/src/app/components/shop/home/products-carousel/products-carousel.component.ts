@@ -99,7 +99,7 @@ export class ProductsCarouselComponent implements OnInit, OnDestroy {
     if (this.timeoutId) {
       window.clearTimeout(this.timeoutId);
     }
-    // this.timeoutId = window.setTimeout(() => this.goToNext(), 6000);
+    this.timeoutId = window.setTimeout(() => this.goToNext(), 6000);
   }
 
   mod(a: number, n: number) {

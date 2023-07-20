@@ -20,6 +20,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { ShopModule } from './components/shop/shop.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { LoginBackgroundComponent } from './components/login-background/login-background.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     LoginComponent,
     AlertComponent,
     NotFoundComponent,
+    LoginBackgroundComponent,
   ],
   imports: [
     BrowserModule,
