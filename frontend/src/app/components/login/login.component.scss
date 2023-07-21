@@ -10,6 +10,12 @@ body {
   height: 100vh;
 }
 
+.background{
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
 a {
   color: gray;
   display:inline-block;
@@ -66,7 +72,7 @@ img{
 /* FORM TYPOGRAPHY*/
 
 input[type=button], button[type=submit] {
-  background-color: #fc9403;
+  background-color: #fca62d;
   border: none;
   color: white;
   padding: 15px 80px;

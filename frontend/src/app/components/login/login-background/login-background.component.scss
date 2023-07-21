@@ -1,3 +1,4 @@
+
 .background-login{
   position: absolute;
   width: 100%;
@@ -6,12 +7,13 @@
 
   .item{
     position: absolute;
-    width: 100px;
-    height: 10.0px;
+    width: 120px;
+    height: 120px;
+    opacity: 80%;
   }
 
   .item-1 {
-    left: 0%;
+    left: 0;
   }
   .item-2 {
     left: 20%;

@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { UserService } from '../../../services/users/user.service';
 import { CartService } from '../../../services/products/cart.service';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +14,7 @@ import { BehaviorSubject } from 'rxjs';
 export class NavbarComponent implements OnInit {
   user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
 
+  accountDropdown = false;
   constructor(
     private authService: AuthService,
     private userService: UserService,
@@ -22,5 +24,10 @@ export class NavbarComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.userService.getUserInfo().subscribe(user => this.user$.next(user));
     }
+  }
+
+  logout() {
+    this.authService.logout();
+    window.location.reload();
   }
 }

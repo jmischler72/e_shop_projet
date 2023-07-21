@@ -26,6 +26,9 @@ export class AuthService {
   }
 
   logout() {
+    /*TODO
+    - post to api to revoke token
+     */
     this.storageService.removeJwtToken();
   }
 

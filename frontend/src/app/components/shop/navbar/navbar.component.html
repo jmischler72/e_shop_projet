@@ -6,18 +6,42 @@
     alt="Nintendo Eshop" />
 
   <div class="nav-item">
-    <a
+    <div
       *ngIf="user$ | async as user; else noUser"
-      [routerLink]="['/user']"
-      class="item">
-      <div class="group">
-        <mat-icon>account_circle</mat-icon>
-        <div class="detail">
-          <h1>Votre compte</h1>
-          <div class="sub">{{ user.email }}</div>
+      (outsideClick)="accountDropdown = false">
+      <a (click)="accountDropdown = !accountDropdown" class="item">
+        <div class="group">
+          <mat-icon>account_circle</mat-icon>
+          <div class="detail">
+            <h1>Votre compte</h1>
+            <div class="sub">{{ user.email }}</div>
+          </div>
         </div>
+      </a>
+      <div
+        [ngStyle]="{ display: accountDropdown ? 'block' : 'none' }"
+        class="dropdown absolute z-100 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 overflow-auto dark:bg-gray-700">
+        <ul
+          (click)="accountDropdown = false"
+          class="py-2 text-sm text-gray-700 dark:text-gray-200"
+          aria-labelledby="dropdownDefaultButton">
+          <li>
+            <a
+              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              [routerLink]="['/user']">
+              Mon Compte
+            </a>
+          </li>
+          <li>
+            <a
+              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              (click)="logout()">
+              Se déconnecter
+            </a>
+          </li>
+        </ul>
       </div>
-    </a>
+    </div>
     <ng-template #noUser>
       <a class="item" [routerLink]="['/login']">
         <div class="group">

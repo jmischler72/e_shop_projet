@@ -18,7 +18,7 @@
       *ngFor="let slide of slides; let slideIndex = index"
       class="dot"
       [ngStyle]="
-        slideIndex === currentIndex ? { color: 'black' } : { color: 'orange' }
+        slideIndex === currentIndex ? { color: 'white' } : { color: 'orange' }
       "
       (click)="goToSlide(slideIndex)">
       ●

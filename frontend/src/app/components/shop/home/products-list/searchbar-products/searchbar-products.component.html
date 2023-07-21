@@ -17,7 +17,7 @@
     </div>
 
     <div (outsideClick)="dropDownOpen = false">
-      <div (click)="dropDownOpen = true" class="category-search">
+      <div (click)="dropDownOpen = !dropDownOpen" class="category-search">
         <div class="text-button">
           <a *ngIf="byCategory?.value; else noCategory">
             {{ byCategory?.value }}</a
